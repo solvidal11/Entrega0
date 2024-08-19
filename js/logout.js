@@ -1,10 +1,9 @@
+// logout.js
 document.addEventListener('DOMContentLoaded', () => {
-    const logoutButton = document.getElementById('logout');
+    // Eliminar los datos de autenticación del localStorage
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('username');
 
-    logoutButton.addEventListener('click', () => {
-        // Eliminar el estado de autenticación en localStorage
-        localStorage.removeItem('loggedIn');
-        alert('Sesión cerrada.');
-        window.location.href = 'login.html'; // Redirigir a la página de inicio de sesión
-    });
+    // Redirigir al usuario a la página de inicio de sesión
+    window.location.href = 'login.html';
 });
