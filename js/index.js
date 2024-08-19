@@ -16,16 +16,26 @@ document.addEventListener("DOMContentLoaded", function(){
 
 // Validación de token en la página principal
 document.addEventListener('DOMContentLoaded', () => {
-    const token = localStorage.getItem('authToken');
-    const usernameDisplay = document.getElementById('usernameDisplay'); // Elemento donde mostrar el nombre de usuario
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    const logoutButton = document.getElementById('logout');
 
-    if (!token) {
-        window.location.href = 'login.html'; // Redirige al login si no hay token
+    // Verificar si el usuario está autenticado
+    const authToken = localStorage.getItem('authToken');
+    const username = localStorage.getItem('username');
+
+    if (!authToken || !username) {
+        window.location.href = 'login.html'; // Redirige al login si no está autenticado
     } else {
-        // Mostrar el nombre de usuario
-        const username = localStorage.getItem('username');
-        if (usernameDisplay) {
-            usernameDisplay.textContent = `Bienvenido, ${username}`;
-        }
+        welcomeMessage.textContent = `¡Hola, ${username}!`;
     }
+
+    logoutButton.addEventListener('click', () => {
+        // Eliminar los datos de autenticación del localStorage
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('username');
+
+        // Redirigir al usuario a la página de inicio de sesión
+        alert('Has cerrado sesión exitosamente.');
+        window.location.href = 'login.html';
+    });
 });

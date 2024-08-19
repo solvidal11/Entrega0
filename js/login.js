@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const usuario = usuarioInput.value.trim();
         const contraseña = contraseñaInput.value.trim();
 
-        // Simulación de autenticación: acepta cualquier combinación de datos
         if (usuario && contraseña) {
+            // Simulación de autenticación: acepta cualquier combinación de datos
             localStorage.setItem('authToken', 'simulated-token');
             localStorage.setItem('username', usuario); // Guardar el nombre de usuario
             alert('Inicio de sesión exitoso.');
