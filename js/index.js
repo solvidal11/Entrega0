@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
+<<<<<<< HEAD
 });
 
 
@@ -38,4 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Has cerrado sesión exitosamente.');
         window.location.href = 'login.html';
     });
+=======
+>>>>>>> 6d4adf8360f5aa072155694626361d5f0126296c
 });
