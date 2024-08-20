@@ -1,4 +1,3 @@
-// Este archivo es opcional si ya estás manejando el cierre de sesión desde `index.js`
 document.addEventListener('DOMContentLoaded', () => {
    const btnlogout = document.getElementById('btnlogout');
    btnlogout.addEventListener('click', () =>{
