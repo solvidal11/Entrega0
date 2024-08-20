@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (usuario && contraseña) {
             // Simulación de autenticación: acepta cualquier combinación de datos
             localStorage.setItem('authToken', 'simulated-token');
-            localStorage.setItem('username', usuario); // Guardar el nombre de usuario
+            localStorage.setItem('usuario', usuario); // Guardar el nombre de usuario
             alert('Inicio de sesión exitoso.');
             window.location.href = 'index.html'; // Redirige a la portada
         } else {

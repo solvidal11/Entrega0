@@ -1,12 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     const productsContainer = document.getElementById('products-container');
-    const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
-    const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
+    const Autos = "https://japceibal.github.io/emercado-api/cats_products/101.json"; // json de cat autos
+
+    // Función para obtener datos JSON
+    async function getJSONData(url) {
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            return { status: 'ok', data };
+        } catch (error) {
+            console.error('Error al obtener datos JSON:', error);
+            return { status: 'error', data: null };
+        }
+    }
 
     // Función para obtener y mostrar productos de la categoría 101
     async function fetchProducts() {
-        const apiUrl = `${PRODUCTS_URL}101.json`; // URL para productos de la categoría 101
-        const productsResult = await getJSONData(apiUrl); // Usa la función para obtener datos JSON
+        const productsResult = await getJSONData(Autos); // Usa la función para obtener datos JSON
         if (productsResult.status === 'ok') {
             renderProducts(productsResult.data.products); // Muestra los productos
         } else {

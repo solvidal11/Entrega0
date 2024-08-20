@@ -16,23 +16,23 @@ document.addEventListener("DOMContentLoaded", function(){
 
 // Validación de token en la página principal
 document.addEventListener('DOMContentLoaded', () => {
-    const welcomeMessage = document.getElementById('welcomeMessage');
+    const welcomeMessage = document.getElementById('mostrarusuario');
     const logoutButton = document.getElementById('logout');
 
     // Verificar si el usuario está autenticado
     const authToken = localStorage.getItem('authToken');
-    const username = localStorage.getItem('username');
+    const usuario = localStorage.getItem('usuario');
 
-    if (!authToken || !username) {
+    if (!authToken || !usuario) {
         window.location.href = 'login.html'; // Redirige al login si no está autenticado
     } else {
-        welcomeMessage.textContent = `¡Hola, ${username}!`;
+        welcomeMessage.textContent = `¡Hola, ${usuario}!`;
     }
 
     logoutButton.addEventListener('click', () => {
         // Eliminar los datos de autenticación del localStorage
         localStorage.removeItem('authToken');
-        localStorage.removeItem('username');
+        localStorage.removeItem('usuario');
 
         // Redirigir al usuario a la página de inicio de sesión
         alert('Has cerrado sesión exitosamente.');
