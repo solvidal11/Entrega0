@@ -1,49 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
     const productsContainer = document.getElementById('products-container');
-    const Autos = "https://japceibal.github.io/emercado-api/cats_products/101.json"; // json de cat autos
+    const Autos = "https://japceibal.github.io/emercado-api/cats_products/101.json"; // URL del JSON de productos (autos)
 
-    // Función para obtener datos JSON
-    async function getJSONData(url) {
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            return { status: 'ok', data };
-        } catch (error) {
-            console.error('Error al obtener datos JSON:', error);
-            return { status: 'error', data: null };
-        }
+    function fetchProducts() {
+        fetch(Autos)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.products) {
+                    displayProducts(data.products); // Llama a la función para mostrar los productos
+                } else {
+                    console.error('Datos de productos no encontrados o estructura inesperada:', data);
+                    productsContainer.innerHTML = '<p>No se encontraron productos.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error al obtener productos:', error);
+                productsContainer.innerHTML = '<p>Error al cargar productos. Inténtalo de nuevo más tarde.</p>';
+            });
     }
 
-    // Función para obtener y mostrar productos de la categoría 101
-    async function fetchProducts() {
-        const productsResult = await getJSONData(Autos); // Usa la función para obtener datos JSON
-        if (productsResult.status === 'ok') {
-            renderProducts(productsResult.data.products); // Muestra los productos
-        } else {
-            console.error('Error al cargar productos:', productsResult.data);
+    function displayProducts(products) {
+        if (!products || !products.length) {
+            productsContainer.innerHTML = '<p>No se encontraron productos.</p>';
+            return;
         }
-    }
 
-    // Renderizar productos
-    function renderProducts(products) {
-        productsContainer.innerHTML = ''; // Limpiar contenedor
+        productsContainer.innerHTML = ''; // Limpiar contenedor antes de agregar productos
+
         products.forEach(product => {
-            console.log(product); // Inspeccionar los datos
-            
-            // Ajustar las propiedades según la estructura de datos
             const productCard = document.createElement('div');
-            productCard.className = 'product-card col-md-4';
+            productCard.className = 'product-card'; 
             productCard.innerHTML = `
                 <img src="${product.image}" alt="${product.name}">
                 <h2>${product.name}</h2>
-                <p><strong>Precio:</strong> $${product.cost}</p>
-                <p><strong>Descripción:</strong> ${product.description || 'No disponible'}</p>
-                <p><strong>Cantidad Vendidos:</strong> ${product.soldCount || 'No disponible'}</p>
+                <p>${product.description}</p>
+                <p><strong>Precio:</strong> ${product.cost} ${product.currency}</p>
+                <p><strong>Vendidos:</strong> ${product.soldCount}</p>
             `;
             productsContainer.appendChild(productCard);
         });
     }
 
-    // Inicializar carga de productos
+    // Inicializar la carga de productos
     fetchProducts();
 });
