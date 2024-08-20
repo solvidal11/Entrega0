@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: rgb(248, 249, 250);
+    }
+    .navbar-nav .welcome-message {
+      margin-right: 15px;
+    }
+  </style>
 </head>
-
 <body>
-<<<<<<< HEAD
-  <div id="products-container" class="container"></div>
-=======
->>>>>>> 6d4adf8360f5aa072155694626361d5f0126296c
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -33,15 +34,12 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-<<<<<<< HEAD
-          <span id="mostrarusuario" class="navbar-text me-3"></span>
-          <li class="nav-item">
-            <button class="btn btn-dark" id="btnlogout">Cerrar sesión</button>
-        </li>
-=======
-          <li class="nav-item">
+          <li class="nav-item d-flex align-items-center">
+            <!-- Mensaje de bienvenida -->
+            <span class="welcome-message" id="mostrarusuario"></span>
+            <!-- Botón de cierre de sesión con el id 'btnlogout' -->
+            <a class="nav-link" id="btnlogout" href="#">Cerrar sesión</a>
           </li>
->>>>>>> 6d4adf8360f5aa072155694626361d5f0126296c
         </ul>
       </div>
     </div>
@@ -51,36 +49,7 @@
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm custom-card cursor-active" id="autos">
-              <img class="bd-placeholder-img card-img-top" src="img/cars_index.jpg"
-                alt="Imgagen representativa de la categoría 'Autos'">
-              <h3 class="m-3">Autos</h3>
-              <div class="card-body">
-                <p class="card-text">Los mejores precios en autos 0 kilómetro, de alta y media gama.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm custom-card cursor-active" id="juguetes">
-              <img class="bd-placeholder-img card-img-top" src="img/toys_index.jpg"
-                alt="Imgagen representativa de la categoría 'Juguetes'">
-              <h3 class="m-3">Juguetes</h3>
-              <div class="card-body">
-                <p class="card-text">Encuentra aquí los mejores precios para niños/as de cualquier edad.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm custom-card cursor-active" id="muebles">
-              <img class="bd-placeholder-img card-img-top" src="img/furniture_index.jpg"
-                alt="Imgagen representativa de la categoría 'Muebles'">
-              <h3 class="m-3">Muebles</h3>
-              <div class="card-body">
-                <p class="card-text">Muebles antiguos, nuevos y para ser armados por uno mismo.</p>
-              </div>
-            </div>
-          </div>
+          <!-- Tu contenido aquí -->
         </div>
         <div class="row">
           <a class="btn btn-light btn-lg btn-block" href="categories.html">Y mucho más!</a>
@@ -99,6 +68,8 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/index.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/logout.js"></script>
 </body>
 
 </html>

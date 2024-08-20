@@ -1,44 +1,46 @@
-document.addEventListener("DOMContentLoaded", function(){
-    document.getElementById("autos").addEventListener("click", function() {
+document.addEventListener("DOMContentLoaded", function() {
+    // Manejo de navegación por categorías
+    document.getElementById("autos")?.addEventListener("click", function() {
         localStorage.setItem("catID", 101);
-        window.location = "products.html"
+        window.location = "products.html";
     });
-    document.getElementById("juguetes").addEventListener("click", function() {
+    document.getElementById("juguetes")?.addEventListener("click", function() {
         localStorage.setItem("catID", 102);
-        window.location = "products.html"
+        window.location = "products.html";
     });
-    document.getElementById("muebles").addEventListener("click", function() {
+    document.getElementById("muebles")?.addEventListener("click", function() {
         localStorage.setItem("catID", 103);
-        window.location = "products.html"
+        window.location = "products.html";
     });
-<<<<<<< HEAD
-});
 
-
-// Validación de token en la página principal
-document.addEventListener('DOMContentLoaded', () => {
-    const welcomeMessage = document.getElementById('mostrarusuario');
-    const logoutButton = document.getElementById('logout');
-
-    // Verificar si el usuario está autenticado
-    const authToken = localStorage.getItem('authToken');
+    // Mostrar el nombre de usuario
     const usuario = localStorage.getItem('usuario');
+    const mostrarUsuario = document.getElementById('mostrarusuario');
 
-    if (!authToken || !usuario) {
-        window.location.href = 'login.html'; // Redirige al login si no está autenticado
+    if (mostrarUsuario) {
+        if (usuario) {
+            mostrarUsuario.textContent = `Bienvenido, ${usuario}`;
+        } else {
+            mostrarUsuario.textContent = 'Bienvenido, invitado';
+        }
     } else {
-        welcomeMessage.textContent = `¡Hola, ${usuario}!`;
+        console.error('Elemento con ID "mostrarusuario" no encontrado.');
     }
 
-    logoutButton.addEventListener('click', () => {
-        // Eliminar los datos de autenticación del localStorage
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('usuario');
+    // Manejo del cierre de sesión
+    const btnLogout = document.getElementById('btnlogout');
+    if (btnLogout) {
+        btnLogout.addEventListener('click', (event) => {
+            event.preventDefault();
+            // Eliminar los datos de autenticación del localStorage
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('usuario');
 
-        // Redirigir al usuario a la página de inicio de sesión
-        alert('Has cerrado sesión exitosamente.');
-        window.location.href = 'login.html';
-    });
-=======
->>>>>>> 6d4adf8360f5aa072155694626361d5f0126296c
+            // Redirigir al usuario a la página de inicio de sesión
+            alert('Has cerrado sesión exitosamente.');
+            window.location.href = 'login.html';
+        });
+    } else {
+        console.error('Elemento con ID "btnlogout" no encontrado.');
+    }
 });
