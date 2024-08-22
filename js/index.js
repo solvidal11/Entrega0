@@ -20,11 +20,9 @@ document.addEventListener("DOMContentLoaded", function() {
     if (mostrarUsuario) {
         if (usuario) {
             mostrarUsuario.textContent = `¡Bienvenido, ${usuario}!`;
-        } else {
-            mostrarUsuario.textContent = 'Bienvenido, invitado';
-        }
+               }
     } else {
-        console.error('Elemento con ID "mostrarusuario" no encontrado.');
+        window.location.href = 'login.html';
     }
 
     // Manejo del cierre de sesión

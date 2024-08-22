@@ -38,7 +38,7 @@ function checkUser() {
         const user = localStorage.getItem('usuario');
 
         // Si no hay usuario, redirige a login.html
-        if (!usuario) {
+        if (!user) {
             window.location.href = 'login.html';
         }
     }
