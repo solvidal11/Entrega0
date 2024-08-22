@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (mostrarUsuario) {
         if (usuario) {
-            mostrarUsuario.textContent = `Bienvenido, ${usuario}`;
+            mostrarUsuario.textContent = `¡Bienvenido, ${usuario}!`;
         } else {
             mostrarUsuario.textContent = 'Bienvenido, invitado';
         }

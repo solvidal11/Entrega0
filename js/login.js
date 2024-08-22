@@ -28,3 +28,21 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('No se encontraron los elementos del formulario.');
     }
 });
+
+function checkUser() {
+    // Verifica si estamos en la página de inicio de sesión
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    if (currentPage !== 'login.html') {
+        // Verifica si hay un usuario en localStorage
+        const user = localStorage.getItem('usuario');
+
+        // Si no hay usuario, redirige a login.html
+        if (!usuario) {
+            window.location.href = 'login.html';
+        }
+    }
+}
+
+// Llama a la función para verificar al cargar la página
+checkUser();
