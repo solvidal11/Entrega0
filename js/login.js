@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('usuario', usuario);
 
                 alert('Inicio de sesión exitoso.');
-                window.location.href = 'index.html'; // Redirige a la portada
+                window.location.href = 'index.html'; // Redirige a la página principal
             } catch (error) {
                 console.error('Error al iniciar sesión:', error);
                 alert('Hubo un problema al iniciar sesión. Por favor, intente de nuevo.');
@@ -30,6 +30,3 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('No se encontraron los elementos del formulario.');
     }
 });
-
-
-
