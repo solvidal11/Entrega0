@@ -12,5 +12,5 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem("catID", 103);
         window.location.href = "products.html";
     });
-
+)};
     
