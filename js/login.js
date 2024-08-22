@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('usuario', usuario);
 
                 alert('Inicio de sesión exitoso.');
-                window.location.href = 'index.html'; // Redirige a la portada
+                window.location.href = 'index.html'; // Redirige a la página principal
             } catch (error) {
                 console.error('Error al iniciar sesión:', error);
                 alert('Hubo un problema al iniciar sesión. Por favor, intente de nuevo.');
@@ -31,20 +31,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-function checkUser() {
-    // Verifica si estamos en la página de inicio de sesión
-    const currentPage = window.location.pathname.split('/').pop();
-    
-    if (currentPage !== 'login.html') {
-        // Verifica si hay un usuario en localStorage
-        const user = localStorage.getItem('usuario');
 
-        // Si no hay usuario, redirige a login.html
-        if (!user) {
-            window.location.href = 'login.html';
-        }
-    }
-}
 
-// Llama a la función para verificar al cargar la página
-checkUser();
