@@ -8,25 +8,28 @@ document.addEventListener('DOMContentLoaded', () => {
             const usuario = usuarioInput.value.trim();
             const contraseña = contraseñaInput.value.trim();
 
-            if (usuario && contraseña) {
-                try {
-                    // Simulación de autenticación
-                    localStorage.setItem('authToken', 'simulated-token');
-                    localStorage.setItem('usuario', usuario);
-
-                    alert('Inicio de sesión exitoso.');
-                    window.location.href = 'index.html'; // Redirige a la portada
-                } catch (error) {
-                    console.error('Error al iniciar sesión:', error);
-                    alert('Hubo un problema al iniciar sesión. Por favor, intente de nuevo.');
-                }
-            } else {
+            // Validaciones básicas
+            if (!usuario || !contraseña) {
                 alert('Por favor, ingrese usuario y contraseña.');
+                return;
+            }
+
+            try {
+                // Simulación de autenticación
+                localStorage.setItem('authToken', 'simulated-token');
+                localStorage.setItem('usuario', usuario);
+
+                alert('Inicio de sesión exitoso.');
+                window.location.href = 'index.html'; // Redirige a la portada
+            } catch (error) {
+                console.error('Error al iniciar sesión:', error);
+                alert('Hubo un problema al iniciar sesión. Por favor, intente de nuevo.');
             }
         });
     } else {
         console.error('No se encontraron los elementos del formulario.');
     }
 });
+
 
 
