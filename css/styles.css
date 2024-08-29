@@ -285,6 +285,7 @@ form {
 .product-card p strong {
   font-weight: bold;
 }
+
 @media only screen and (min-width: 1366px) and (max-width: 768px){ 
   #products-container {
     gap: 1.875rem; 
@@ -329,3 +330,45 @@ form {
     font-size: 0.875rem; 
   }
 }
+>>>>>>> 0d0091a2c7475737ee6ed3db30006fc3ad49be89
+
+
+@media only screen and ((min-width: 320px) and (max-width: 568px)) {
+  .container {
+  padding: 0.5rem; /* Ajusta el relleno para pantallas más pequeñas */
+  }
+  
+  .alert {
+  padding: 1rem; /* Reduce el relleno */
+  }
+  
+  .form-control {
+  padding: 0.8rem; /* Reduce el relleno */
+  font-size: 0.8rem; /* Reduce el tamaño de fuente */
+  }
+  
+  #inicio {
+  padding: 1rem; /* Reduce el relleno del botón */
+  font-size: 1rem; /* Reduce el tamaño de fuente del botón */
+  }
+  }
+
+  @media only screen and ((min-width: 768px) and (max-width: 1024px)) {
+    .container {
+      padding: 1rem; /* Ajusta el relleno para pantallas más pequeñas */
+      }
+      
+      .alert {
+      padding: 2rem; /* Reduce el relleno */
+      }
+      
+      .form-control {
+      padding: 1rem; /* Reduce el relleno */
+      font-size: 1rem; /* Reduce el tamaño de fuente */
+      }
+      
+      .btn-success {
+      padding: 2rem; /* Reduce el relleno del botón */
+      font-size: 2rem; /* Reduce el tamaño de fuente del botón */
+      }
+      }
