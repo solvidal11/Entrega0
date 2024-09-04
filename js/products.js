@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const productsContainer = document.getElementById('products-container');   
+    const searchInput = document.getElementById('search-input');
     // Obtener el ID de cada categoría desde localStorage (muestra en letra de entrega)
     const categoryId = localStorage.getItem('catID');
     
@@ -14,7 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const PRODUCTS_API_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"; // URL del JSON de productos
 
 
-    // Función para obtener productos de la API
+    let products = [];
+
     function fetchProducts() {
         fetch(URL)
         fetch(PRODUCTS_API_URL)
@@ -26,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(data => {
                 if (data && data.products) {
-                    displayProducts(data.products); // Llama a la función para mostrar los productos
+                    products = data.products;
+                    displayProducts(products); // Llama a la función para mostrar los productos
                 } else {
                     console.error('Datos de productos no encontrados o estructura inesperada:', data);
                     productsContainer.innerHTML = '<p>No se encontraron productos.</p>';
@@ -38,16 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Función para mostrar productos en el contenedor
-    function displayProducts(products) {
-        if (!products || !products.length) {
+    function displayProducts(productsToDisplay) {
+        if (!productsToDisplay || !productsToDisplay.length) {
             productsContainer.innerHTML = '<p>No se encontraron productos.</p>';
             return;
         }
 
         productsContainer.innerHTML = ''; // Limpiar contenedor antes de agregar productos
 
-        products.forEach(product => {
+        productsToDisplay.forEach(product => {
             const productCard = document.createElement('div');
             productCard.className = 'col-md-4 mb-4 product'; 
             productCard.setAttribute('data-product-id', product.id);
@@ -68,9 +70,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Inicializar la carga de productos correspondiente a cada categoria
+    function filterProducts(query) {
+        if (!query) {
+            displayProducts(products);
+            return;
+        }
+
+        const filteredProducts = products.filter(product =>
+            product.name.toLowerCase().includes(query.toLowerCase()) ||
+            product.description.toLowerCase().includes(query.toLowerCase())
+        );
+
+        displayProducts(filteredProducts);
+    }
+
+    searchInput.addEventListener('input', () => {
+        filterProducts(searchInput.value);
+    });
+
     fetchProducts();
 
-    // Manejar el clic en un producto
     productsContainer.addEventListener('click', (event) => {
         const target = event.target;
         if (target.closest('.btn')) {
@@ -82,4 +101,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-});
+})
