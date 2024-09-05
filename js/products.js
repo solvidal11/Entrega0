@@ -1,22 +1,16 @@
+// Espera a que el contenido del documento esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
-    const productsContainer = document.getElementById('products-container');   
+    // Referencias a los elementos del DOM
+    const productsContainer = document.getElementById('products-container');
     const searchInput = document.getElementById('search-input');
-    // Obtener el ID de cada categoría desde localStorage (muestra en letra de entrega)
-    const categoryId = localStorage.getItem('catID');
     
-    // Verificar si ese valor de categoryId existe y si un número válido (van desde 101 a 109)
-    if (!categoryId) {
-        productsContainer.innerHTML = '<p>ID de categoría no válido.</p>';
-        return;
-    }
-
-    // Creacion de una URL utilizando categoryId, y no las urls de cada categoria por separado (repeticion de codigo)
-    const URL = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`;
-    const PRODUCTS_API_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"; // URL del JSON de productos
-
-
+    // URL del JSON que contiene los productos
+    const PRODUCTS_API_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+    
+    // Variable para almacenar los productos
     let products = [];
 
+    // Función para obtener los productos desde la API
     function fetchProducts() {
         fetch(URL)
         fetch(PRODUCTS_API_URL)
@@ -29,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 if (data && data.products) {
                     products = data.products;
-                    displayProducts(products); // Llama a la función para mostrar los productos
+                    displayProducts(products); // Muestra los productos obtenidos
                 } else {
                     console.error('Datos de productos no encontrados o estructura inesperada:', data);
                     productsContainer.innerHTML = '<p>No se encontraron productos.</p>';
@@ -41,13 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
+    // Función para mostrar los productos en el contenedor
     function displayProducts(productsToDisplay) {
         if (!productsToDisplay || !productsToDisplay.length) {
             productsContainer.innerHTML = '<p>No se encontraron productos.</p>';
             return;
         }
 
-        productsContainer.innerHTML = ''; // Limpiar contenedor antes de agregar productos
+        productsContainer.innerHTML = ''; // Limpia el contenedor antes de agregar los productos
 
         productsToDisplay.forEach(product => {
             const productCard = document.createElement('div');
@@ -69,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Inicializar la carga de productos correspondiente a cada categoria
+    // Función para filtrar productos según la búsqueda
     function filterProducts(query) {
         if (!query) {
             displayProducts(products);
@@ -84,20 +79,23 @@ document.addEventListener('DOMContentLoaded', () => {
         displayProducts(filteredProducts);
     }
 
+    // Añade un evento para filtrar los productos cuando el usuario escribe en el campo de búsqueda
     searchInput.addEventListener('input', () => {
         filterProducts(searchInput.value);
     });
 
+    // Llama a la función para obtener y mostrar los productos al cargar la página
     fetchProducts();
 
+    // Añade un evento para redirigir al usuario a la página de detalles del producto cuando hace clic en "Ver detalles"
     productsContainer.addEventListener('click', (event) => {
         const target = event.target;
         if (target.closest('.btn')) {
             const productDiv = target.closest('.product');
             if (productDiv) {
                 const productId = productDiv.getAttribute('data-product-id');
-                localStorage.setItem('selectedProductId', productId);
-                window.location.href = 'product-info.html';
+                localStorage.setItem('selectedProductId', productId); // Guarda el ID del producto en localStorage
+                window.location.href = 'product-info.html'; // Redirige a la página de detalles del producto
             }
         }
     });
