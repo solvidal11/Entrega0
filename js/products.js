@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p class="card-text">${product.description}</p>
                         <p><strong>Precio:</strong> ${product.cost} ${product.currency}</p>
                         <p><strong>Vendidos:</strong> ${product.soldCount}</p>
-                        <a href="#" class="btn btn-primary">Ver detalles</a>
+                        <a href="#" class="btn btn-secondary">Ver detalles</a>
                     </div>
                 </div>
             `;
