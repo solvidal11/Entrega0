@@ -370,3 +370,65 @@ form {
       font-size: 2rem; /* Reduce el tamaño de fuente del botón */
       }
       }
+
+      
+      
+      
+      /* Estilos para la parte de detalles de productos */
+
+      /* Contenedor principal del producto */
+#product-info {
+  max-width: 600px;
+  margin: 0 auto; 
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Estilo del título (nombre del producto) */
+#product-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Descripción del producto */
+#product-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Información adicional del producto */
+#product-info p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Estilo de las imágenes */
+#image img {
+  max-width: 100%; /* Asegura que las imágenes no sean más grandes que el contenedor */
+  height: auto;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Estilo para los títulos pequeños */
+#product-info p span {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Contenedor de las imágenes */
+#image {
+  margin-top: 20px;
+}
+
+/* Centra el texto de error o falta de imágenes */
+#image p {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
