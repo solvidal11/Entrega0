@@ -1,4 +1,3 @@
-// Espera a que el contenido del documento esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
     // Referencias a los elementos del DOM
     const productsContainer = document.getElementById('products-container');
@@ -64,6 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Llama a la función para obtener y mostrar los productos al cargar la página
+    fetchProducts();
+
     // Función para filtrar productos según la búsqueda
     function filterProducts(query) {
         if (!query) {
@@ -83,9 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('input', () => {
         filterProducts(searchInput.value);
     });
-
-    // Llama a la función para obtener y mostrar los productos al cargar la página
-    fetchProducts();
 
     // Añade un evento para redirigir al usuario a la página de detalles del producto cuando hace clic en "Ver detalles"
     productsContainer.addEventListener('click', (event) => {
