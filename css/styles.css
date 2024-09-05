@@ -370,65 +370,93 @@ form {
       font-size: 2rem; /* Reduce el tamaño de fuente del botón */
       }
       }
+ /*-------------------------------------------------------------------------------------------*/     
+      
+     /* Estilos generales */
+body {
+  font-family: 'Raleway', sans-serif;
+}
 
-      
-      
-      
-      /* Estilos para la parte de detalles de productos */
-
-      /* Contenedor principal del producto */
-#product-info {
-  max-width: 600px;
-  margin: 0 auto; 
+/* Contenedor principal del producto */
+.product-info {
   padding: 20px;
-  background-color: white;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  border: 2px solid #f0f0f0;
+  max-width: 100%; /* Ajusta el ancho del contenedor */
 }
 
-/* Estilo del título (nombre del producto) */
-#product-name {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-/* Descripción del producto */
-#product-description {
-  font-size: 16px;
-  color: #555;
+/* Título del producto */
+#product-title {
   margin-bottom: 20px;
 }
 
-/* Información adicional del producto */
-#product-info p {
-  font-size: 16px;
-  margin-bottom: 10px;
+#product-name {
+  font-size: 28px; /* Tamaño del nombre del producto */
+  font-weight: bold;
+  color: #333;
+  position: relative; /* Necesario para el pseudo-elemento */
 }
 
-/* Estilo de las imágenes */
-#image img {
-  max-width: 100%; /* Asegura que las imágenes no sean más grandes que el contenedor */
-  height: auto;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+/* Línea de degradé debajo del título */
+#product-name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 5px; /* Altura de la línea */
+  background: linear-gradient(to right, 
+    #FFEBEE, /* Naranja muy claro */
+    #FFC107, /* Naranja claro */
+    #FF9800, /* Naranja medio */
+    #FB8C00, /* Naranja oscuro */
+    #F57C00, /* Naranja más oscuro */
+    #E64A19  /* Naranja rojo oscuro */
+  ); /* Degradé de tonos de naranja claro a oscuro */
+  border-radius: 2px;
 }
 
-/* Estilo para los títulos pequeños */
-#product-info p span {
+/* Meta información (descripción, cantidad vendida, precio, categoría) */
+#product-meta p {
+  font-size: 16px; /* Tamaño de fuente consistente */
+  color: #555;
+  margin-bottom: 15px;
+}
+
+#product-meta p span {
   font-weight: bold;
   color: #333;
 }
 
-/* Contenedor de las imágenes */
-#image {
-  margin-top: 20px;
+/* Estilos específicos para IDs */
+#description, #soldCount, #cost, #category {
+  font-size: 16px; /* Tamaño de fuente consistente */
+  color: #555;
 }
 
-/* Centra el texto de error o falta de imágenes */
-#image p {
-  text-align: center;
-  color: #999;
-  font-style: italic;
+/* Contenedor de imágenes */
+.product-images {
+  padding: 20px;
+  overflow-x: auto; /* Permite el desplazamiento horizontal */
+}
+
+#product-images-container {
+  display: flex;
+  flex-direction: row; /* Imágenes en fila */
+  gap: 15px; /* Espacio entre las imágenes */
+}
+
+/* Imágenes dentro del contenedor */
+#product-images-container img {
+  width: 300px; /* Ancho aumentado para las imágenes */
+  height: auto; /* Mantiene la proporción de la imagen */
+  border: 4px solid #ddd;
+  border-radius: 12px;
+}
+
+/* Estilo para la página */
+.container {
+  max-width: 1200px; /* Ancho máximo del contenedor */
 }
