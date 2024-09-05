@@ -2,9 +2,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Referencias a los elementos del DOM
     const productsContainer = document.getElementById('products-container');
     const searchInput = document.getElementById('search-input');
+
+    // Obtener el ID de cada categoría desde localStorage (muestra en letra de entrega)
+    const categoryId = localStorage.getItem('catID');
     
-    // URL del JSON que contiene los productos
-    const PRODUCTS_API_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+    // Verificar si ese valor de categoryId existe y si un número válido (van desde 101 a 109)
+    if (!categoryId) {
+        productsContainer.innerHTML = '<p>ID de categoría no válido.</p>';
+        return;
+    }
+
+    // Creación de una URL utilizando categoryId, y no las urls de cada categoria por separado (repetición de código)
+    const PRODUCTS_API_URL = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`;
     
     // Variable para almacenar los productos
     let products = [];
@@ -62,13 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Llama a la función para obtener y mostrar los productos al cargar la página
-    fetchProducts();
-
-    /*DESAFIATE
-
-    /* Función para filtrar productos según la búsqueda*/
-
+    /* DESAFIATE: Función para filtrar productos según la búsqueda */
     function filterProducts(query) {
         if (!query) {
             displayProducts(products);
@@ -83,12 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
         displayProducts(filteredProducts);
     }
 
-    /* Añade un evento para filtrar los productos cuando el usuario escribe en el campo de búsqueda*/
+    /* Añade un evento para filtrar los productos cuando el usuario escribe en el campo de búsqueda */
     searchInput.addEventListener('input', () => {
         filterProducts(searchInput.value);
     });
 
-    /*Añade un evento para redirigir al usuario a la página de detalles del producto cuando hace clic en "Ver detalles"*/
+    /* Añade un evento para redirigir al usuario a la página de detalles del producto cuando hace clic en "Ver detalles" */
     productsContainer.addEventListener('click', (event) => {
         const target = event.target;
         if (target.closest('.btn')) {
@@ -100,4 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // Llama a la función para obtener y mostrar los productos al cargar la página
+    fetchProducts();
 });
