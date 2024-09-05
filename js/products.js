@@ -1,9 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     const productsContainer = document.getElementById('products-container');
-    const Autos = "https://japceibal.github.io/emercado-api/cats_products/101.json"; // URL del JSON de productos (autos)
+    
+    // Obtener el ID de cada categoría desde localStorage (muestra en letra de entrega)
+    const categoryId = localStorage.getItem('catID');
+    
+    // Verificar si ese valor de categoryId existe y si un número válido (van desde 101 a 109)
+    if (!categoryId) {
+        productsContainer.innerHTML = '<p>ID de categoría no válido.</p>';
+        return;
+    }
+
+    // Creacion de una URL utilizando categoryId, y no las urls de cada categoria por separado (repeticion de codigo)
+    const URL = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`;
 
     function fetchProducts() {
-        fetch(Autos)
+        fetch(URL)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -46,6 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Inicializar la carga de productos
+    // Inicializar la carga de productos correspondiente a cada categoria
     fetchProducts();
 });
