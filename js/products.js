@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para obtener los productos desde la API
     function fetchProducts() {
-        fetch(URL)
         fetch(PRODUCTS_API_URL)
             .then(response => {
                 if (!response.ok) {
@@ -66,7 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llama a la función para obtener y mostrar los productos al cargar la página
     fetchProducts();
 
-    // Función para filtrar productos según la búsqueda
+    /*DESAFIATE
+
+    /* Función para filtrar productos según la búsqueda*/
+
     function filterProducts(query) {
         if (!query) {
             displayProducts(products);
@@ -81,12 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
         displayProducts(filteredProducts);
     }
 
-    // Añade un evento para filtrar los productos cuando el usuario escribe en el campo de búsqueda
+    /* Añade un evento para filtrar los productos cuando el usuario escribe en el campo de búsqueda*/
     searchInput.addEventListener('input', () => {
         filterProducts(searchInput.value);
     });
 
-    // Añade un evento para redirigir al usuario a la página de detalles del producto cuando hace clic en "Ver detalles"
+    /*Añade un evento para redirigir al usuario a la página de detalles del producto cuando hace clic en "Ver detalles"*/
     productsContainer.addEventListener('click', (event) => {
         const target = event.target;
         if (target.closest('.btn')) {
@@ -98,4 +100,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-})
+});
