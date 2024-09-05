@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Creación de una URL utilizando categoryId, y no las urls de cada categoria por separado (repetición de código)
+    // Creación de una URL utilizando categoryId, y no las urls de cada categoría por separado (repetición de código)
     const PRODUCTS_API_URL = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`;
     
     // Variable para almacenar los productos
@@ -71,16 +71,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* DESAFIATE: Función para filtrar productos según la búsqueda */
+    /* DESAFIATE: Función para filtrar productos según el nombre */
     function filterProducts(query) {
         if (!query) {
             displayProducts(products);
             return;
         }
 
+        // Filtra solo por el nombre del producto
         const filteredProducts = products.filter(product =>
-            product.name.toLowerCase().includes(query.toLowerCase()) ||
-            product.description.toLowerCase().includes(query.toLowerCase())
+            product.name.toLowerCase().includes(query.toLowerCase())
         );
 
         displayProducts(filteredProducts);
