@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Creación de una URL utilizando categoryId, y no las urls de cada categoría por separado (repetición de código)
     const PRODUCTS_API_URL = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`;
     
     // Variable para almacenar los productos
@@ -30,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (data && data.products) {
                     products = data.products;
                     displayProducts(products); // Muestra los productos obtenidos
+                    initializeFilterAndSortControls(products); // Inicializa los controles de filtrado y ordenamiento
                 } else {
                     productsContainer.innerHTML = '<p>No se encontraron productos.</p>';
                 }
@@ -69,14 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* DESAFIATE: Función para filtrar productos según el nombre */
+    // Función para filtrar productos según el nombre
     function filterProducts(query) {
         if (!query) {
             displayProducts(products);
             return;
         }
 
-        // Filtra solo por el nombre del producto
         const filteredProducts = products.filter(product =>
             product.name.toLowerCase().includes(query.toLowerCase())
         );
@@ -84,12 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
         displayProducts(filteredProducts);
     }
 
-    /* Añade un evento para filtrar los productos cuando el usuario escribe en el campo de búsqueda */
+    // Añade un evento para filtrar los productos cuando el usuario escribe en el campo de búsqueda
     searchInput.addEventListener('input', () => {
         filterProducts(searchInput.value);
     });
 
-    /* Añade un evento para redirigir al usuario a la página de detalles del producto cuando hace clic en "Ver detalles" */
+    // Añade un evento para redirigir al usuario a la página de detalles del producto cuando hace clic en "Ver detalles"
     productsContainer.addEventListener('click', (event) => {
         const target = event.target;
         if (target.closest('.btn')) {
@@ -101,6 +100,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // Función para inicializar los controles de filtro y orden
+    function initializeFilterAndSortControls(products) {
+        // Filtro de productos por rango de precio
+        document.getElementById('filter-btn').addEventListener('click', () => {
+            const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
+            const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
+
+            const filteredProducts = products.filter(product => {
+                return product.cost >= minPrice && product.cost <= maxPrice;
+            });
+
+            displayProducts(filteredProducts);
+        });
+
+        // Ordenar productos por precio ascendente
+        document.getElementById('sort-price-asc').addEventListener('click', () => {
+            const sortedProducts = [...products].sort((a, b) => a.cost - b.cost);
+            displayProducts(sortedProducts);
+        });
+
+        // Ordenar productos por precio descendente
+        document.getElementById('sort-price-desc').addEventListener('click', () => {
+            const sortedProducts = [...products].sort((a, b) => b.cost - a.cost);
+            displayProducts(sortedProducts);
+        });
+
+        // Ordenar productos por relevancia (vendidos) descendente
+        document.getElementById('sort-relevance-desc').addEventListener('click', () => {
+            const sortedProducts = [...products].sort((a, b) => b.soldCount - a.soldCount);
+            displayProducts(sortedProducts);
+        });
+    }
 
     // Llama a la función para obtener y mostrar los productos al cargar la página
     fetchProducts();
