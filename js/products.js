@@ -3,10 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const productsContainer = document.getElementById('products-container');
     const searchInput = document.getElementById('search-input');
 
-    // Obtener el ID de cada categoría desde localStorage (muestra en letra de entrega)
+    // Obtener el ID de cada categoría desde localStorage
     const categoryId = localStorage.getItem('catID');
     
-    // Verificar si ese valor de categoryId existe y si un número válido (van desde 101 a 109)
     if (!categoryId) {
         productsContainer.innerHTML = '<p>ID de categoría no válido.</p>';
         return;
@@ -32,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     products = data.products;
                     displayProducts(products); // Muestra los productos obtenidos
                 } else {
-                    console.error('Datos de productos no encontrados o estructura inesperada:', data);
                     productsContainer.innerHTML = '<p>No se encontraron productos.</p>';
                 }
             })

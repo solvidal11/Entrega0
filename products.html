@@ -34,15 +34,69 @@
             </div>
         </div>
     </nav>
-    <main class="pb-5 container">
+  
+  <main>
         <div class="container">
             <div class="mb-3">
                 <input type="search" id="search-input" class="form-control" placeholder="Buscar productos...">
             </div>
-            <div id="products-container" class="row"></div>
-        </div>
-    </main>
-    <footer class="text-muted">
+            <!-- Controles de ordenamiento -->
+      <div class="row">
+          <div class="col text-end">
+              <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+                  <!-- Botón para ordenar por precio ascendente -->
+                  <input type="radio" class="btn-check" name="options" id="sort-price-asc">
+                  <label class="btn btn-light" for="sort-price-asc">Precio Ascendente</label>
+  
+                  <!-- Botón para ordenar por precio descendente -->
+                  <input type="radio" class="btn-check" name="options" id="sort-price-desc">
+                  <label class="btn btn-light" for="sort-price-desc">Precio Descendente</label>
+  
+                  <!-- Botón para ordenar por relevancia descendente -->
+                  <input type="radio" class="btn-check" name="options" id="sort-relevance-desc" checked>
+                  <label class="btn btn-light" for="sort-relevance-desc"><i class="fas fa-sort-amount-down mr-1"></i> Relevancia</label>
+              </div>
+          </div>
+      </div>
+  
+      <!-- Controles de filtrado por rango de precio -->
+      <div class="row">
+          <div class="col-lg-6 offset-lg-6 col-md-12 mb-1">
+              <div class="row container p-0 m-0">
+                  <div class="col">
+                      <p class="font-weight-normal text-end my-2">Precio:</p>
+                  </div>
+                  <div class="col">
+                      <!-- Entrada para precio mínimo -->
+                      <input class="form-control" type="number" placeholder="Min." id="min-price">
+                  </div>
+                  <div class="col">
+                      <!-- Entrada para precio máximo -->
+                      <input class="form-control" type="number" placeholder="Máx." id="max-price">
+                  </div>
+                  <div class="col-3 p-0">
+                      <div class="btn-group" role="group">
+                          <!-- Botón para aplicar el filtro de rango de precio -->
+                          <button class="btn btn-light btn-block" id="filter-btn">Filtrar</button>
+                          <!-- Botón para limpiar los filtros -->
+                          <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <!-- Contenedor de productos -->
+      <div class="row mt-4">
+          <div id="products-container" class="col-12">
+              <!-- Aquí se cargarán los productos dinámicamente desde products.js -->
+          </div>
+      </div>
+   </div>
+  
+  </main>
+  
+  <footer class="text-muted">
         <div class="container">
             <p class="float-end">
                 <a href="#">Volver arriba</a>
@@ -50,7 +104,8 @@
             <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
         </div>
     </footer>
-    <div id="spinner-wrapper">
+  
+  <div id="spinner-wrapper">
         <div class="lds-ring">
             <div></div>
             <div></div>
@@ -58,7 +113,8 @@
             <div></div>
         </div>
     </div>
-    <script src="js/bootstrap.bundle.min.js"></script>
+  
+  <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/products.js"></script>
 </body>
