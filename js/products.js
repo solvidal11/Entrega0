@@ -1,31 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
     const productsContainer = document.getElementById('products-container');
     
-    // Obtener el ID de cada categoría desde localStorage (muestra en letra de entrega)
+    // Obtener el ID de cada categoría desde localStorage
     const categoryId = localStorage.getItem('catID');
     
-    // Verificar si ese valor de categoryId existe y si un número válido (van desde 101 a 109)
     if (!categoryId) {
         productsContainer.innerHTML = '<p>ID de categoría no válido.</p>';
         return;
     }
 
-    // Creacion de una URL utilizando categoryId, y no las urls de cada categoria por separado (repeticion de codigo)
+    // URL para obtener los productos
     const URL = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`;
 
     function fetchProducts() {
         fetch(URL)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 if (data && data.products) {
-                    displayProducts(data.products); // Llama a la función para mostrar los productos
+                    displayProducts(data.products);  // Mostrar los productos
+                    initializeFilterAndSortControls(data.products);  // Inicializar controles
                 } else {
-                    console.error('Datos de productos no encontrados o estructura inesperada:', data);
                     productsContainer.innerHTML = '<p>No se encontraron productos.</p>';
                 }
             })
@@ -45,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         products.forEach(product => {
             const productCard = document.createElement('div');
-            productCard.className = 'product-card'; 
+            productCard.className = 'product-card';
             productCard.innerHTML = `
                 <img src="${product.image}" alt="${product.name}">
                 <h2>${product.name}</h2>
@@ -57,6 +51,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Inicializar la carga de productos correspondiente a cada categoria
+    // Función para inicializar los controles de filtro y orden
+    function initializeFilterAndSortControls(products) {
+        // Filtro de productos por rango de precio
+        document.getElementById('filter-btn').addEventListener('click', () => {
+            const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
+            const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
+
+            const filteredProducts = products.filter(product => {
+                return product.cost >= minPrice && product.cost <= maxPrice;
+            });
+
+            displayProducts(filteredProducts);
+        });
+
+        // Ordenar productos por precio ascendente
+        document.getElementById('sort-price-asc').addEventListener('click', () => {
+            const sortedProducts = [...products].sort((a, b) => a.cost - b.cost);
+            displayProducts(sortedProducts);
+        });
+
+        // Ordenar productos por precio descendente
+        document.getElementById('sort-price-desc').addEventListener('click', () => {
+            const sortedProducts = [...products].sort((a, b) => b.cost - a.cost);
+            displayProducts(sortedProducts);
+        });
+
+        // Ordenar productos por relevancia (vendidos) descendente
+        document.getElementById('sort-relevance-desc').addEventListener('click', () => {
+            const sortedProducts = [...products].sort((a, b) => b.soldCount - a.soldCount);
+            displayProducts(sortedProducts);
+        });
+    }
+
+    // Inicializar la carga de productos
     fetchProducts();
 });
