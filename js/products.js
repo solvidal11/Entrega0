@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    // Creación de una URL utilizando categoryId
     const PRODUCTS_API_URL = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`;
     
     // Variable para almacenar los productos
@@ -101,39 +102,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Función para inicializar los controles de filtro y orden
     function initializeFilterAndSortControls(products) {
         // Filtro de productos por rango de precio
         document.getElementById('filter-btn').addEventListener('click', () => {
             const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
             const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
-
+    
             const filteredProducts = products.filter(product => {
                 return product.cost >= minPrice && product.cost <= maxPrice;
             });
-
+    
             displayProducts(filteredProducts);
         });
-
+    
         // Ordenar productos por precio ascendente
         document.getElementById('sort-price-asc').addEventListener('click', () => {
             const sortedProducts = [...products].sort((a, b) => a.cost - b.cost);
             displayProducts(sortedProducts);
         });
-
+    
         // Ordenar productos por precio descendente
         document.getElementById('sort-price-desc').addEventListener('click', () => {
             const sortedProducts = [...products].sort((a, b) => b.cost - a.cost);
             displayProducts(sortedProducts);
         });
-
+    
         // Ordenar productos por relevancia (vendidos) descendente
         document.getElementById('sort-relevance-desc').addEventListener('click', () => {
             const sortedProducts = [...products].sort((a, b) => b.soldCount - a.soldCount);
             displayProducts(sortedProducts);
         });
+    
+        // Botón para limpiar los filtros
+        document.getElementById('clearRangeFilter').addEventListener('click', () => {
+            // Restablece los campos de entrada a sus valores predeterminados
+            document.getElementById('min-price').value = '';
+            document.getElementById('max-price').value = '';
+    
+            // Muestra todos los productos
+            displayProducts(products);
+        });
     }
-
+    
     // Llama a la función para obtener y mostrar los productos al cargar la página
     fetchProducts();
 });
