@@ -460,3 +460,116 @@ body {
 .container {
   max-width: 1200px; /* Ancho máximo del contenedor */
 }
+
+
+/*-------------------------------------------------------------------------*/
+
+/* Entrega 4 - Punto 3: Calificacion del producto */
+
+:root {
+    --color-inactivo: #5f5050;
+    --color-hover: #ffa400;
+}
+
+.title-container {
+    display: flex;
+    align-items: center; /* Se alinean verticalmente */
+    margin-bottom: 20px; 
+    margin-left: 110px;
+}
+
+.calificacion-estrellas {
+    display: flex;
+    gap: 5px;
+}
+
+.calificacion-estrellas button {
+    background-color: initial;
+    border: 0;
+    color: var(--color-inactivo);
+    transition: 1s all; /*Transicion de las estrellas para pasar de inactiva a activa*/
+}
+
+.calificacion-estrellas button:hover {
+    cursor: pointer; /*Cambia forma del cursos al posarse sobre las estrellas*/
+    color: var(--color-hover);
+    transform: rotate(180deg); /*Rotacion*/
+}
+
+.title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2em; 
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+}
+
+form {
+    width: 450px;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    margin-left: 110px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  label {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1em;
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-top: 15px;
+
+  }
+  
+  input,
+  textarea {
+    /* Para asegurarse de que todos los campos de texto tienen la misma configuración de letra
+       Por defecto, las áreas de texto tienen un tipo de letra monoespaciada */
+    font: 1em Verdana, Geneva, Tahoma, sans-serif;
+    width: 300px;
+    box-sizing: border-box;
+    border: 1px solid #999;
+  }
+  
+  input:focus,
+  textarea:focus {
+    border-color: #000; /*Se destacan con un borde negro los elementos que se seleccionan con el cursor*/
+  }
+  
+  textarea {
+    vertical-align: top; /* Se alinean los campos de texto con sus etiquetas (Nombre, Mensaje alineado a la cuadricula) */
+    height: 6em; /* Proporcionar espacio para escribir texto */
+  }
+
+  .button-container {
+    font-family: 'Raleway', sans-serif;;
+    font-size: 1em;
+    display: flex;
+    justify-content: right; /* Alinear a la derecha */
+    margin-right: 100px; /* Ajusta para que esté alineado con el borde del textarea */
+}
+
+.btn-enviar {
+    background-color: #e68a21;
+    border: none;
+    color: white;
+    padding: 8px 8px;
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    border-radius: 7px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Efecto de transición */
+    width:90px;
+    height: 40px;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center;
+    margin-bottom: 10px; /* Espacio entre el botón y el borde del formulario */
+}
+
+.btn-enviar:hover {
+    background-color: #835a08; /* Color naranja más oscuro al pasar el mouse */
+}
