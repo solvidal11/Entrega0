@@ -50,6 +50,50 @@
         </div>
     </main>
 
+    <!-- Sección de calificación de los producto -->
+        <div class="title-container">
+            <h1 class="title">Calificación del producto: </h1>
+            <div class="calificacion-estrellas">
+                <br>
+                <button>
+                    <i class="fas fa-star"></i>
+                </button>
+                <button>
+                    <i class="fas fa-star"></i>
+                </button>
+                <button>
+                    <i class="fas fa-star"></i>
+                </button>
+                <button>
+                    <i class="fas fa-star"></i>
+                </button>
+                <button>
+                    <i class="fas fa-star"></i>
+                </button>
+            </div>
+        </div>
+
+        <form action="formulario-calificacion" method="post">
+            <ul>
+                <li>
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="user_name" />
+                </li>
+                <br>
+                <li>
+                    <label for="comment">Comentario:</label>
+                    <textarea id="msg" name="user_message"></textarea>
+                </li>
+            </ul>
+
+            <br>
+            
+            <div class="button-container">
+                <input type="button" value="Enviar" class="btn-enviar">
+            </div>
+        </form>
+    </div>
+
     <footer class="text-muted mt-5">
         <div class="container">
             <p class="float-end">
