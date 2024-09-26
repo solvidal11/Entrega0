@@ -60,5 +60,138 @@ function displayProductInfo(product) {
     });
 }
 
-// Llama a la función de carga de producto cuando la página esté lista
-document.addEventListener('DOMContentLoaded', loadProductInfo);
+let selectedRating = 0; // Almacena la calificación seleccionada
+
+// Manejo de la selección de estrellas
+document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', function() {
+        selectedRating = this.getAttribute('data-score');
+        highlightStars(selectedRating);
+        document.getElementById('rating-value').textContent = `Calificación seleccionada: ${selectedRating}`;
+    });
+});
+
+// Función para resaltar las estrellas hasta la calificación seleccionada
+function highlightStars(rating) {
+    document.querySelectorAll('.star').forEach(star => {
+        const starScore = star.getAttribute('data-score');
+        if (starScore <= rating) {
+            star.querySelector('i').classList.add('selected');
+        } else {
+            star.querySelector('i').classList.remove('selected');
+        }
+    });
+}
+
+// Función para cargar los comentarios del producto (tanto desde la API como de localStorage)
+function loadProductComments() {
+    const selectedProductId = localStorage.getItem('selectedProductId');
+    
+    if (!selectedProductId) {
+        console.error('No se encontró el ID del producto en localStorage');
+        document.querySelector('#comments-section').innerHTML = '<p>No se encontraron comentarios para este producto.</p>';
+        return;
+    }
+
+    const COMMENTS_API_URL = "https://japceibal.github.io/emercado-api/products_comments/" + selectedProductId + ".json";
+
+    // Realiza una petición fetch para obtener los comentarios del producto
+    fetch(COMMENTS_API_URL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta de la red');
+            }
+            return response.json();
+        })
+        .then(apiComments => {
+            const localComments = getLocalComments(selectedProductId);
+            const allComments = [...apiComments, ...localComments];
+            displayProductComments(allComments);
+        })
+        .catch(error => {
+            console.error('Error al cargar los comentarios del producto:', error);
+            document.querySelector('#comments-section').innerHTML = '<p>Error al cargar los comentarios del producto.</p>';
+        });
+}
+
+// Función para mostrar los comentarios en la página
+function displayProductComments(comments) {
+    const commentsContainer = document.getElementById('comments-section');
+    commentsContainer.innerHTML = ''; // Limpia el contenedor
+
+    if (comments.length === 0) {
+        commentsContainer.innerHTML = '<p>No hay comentarios para este producto.</p>';
+        return;
+    }
+
+    comments.forEach(comment => {
+        const commentElement = document.createElement('div');
+        commentElement.classList.add('comment');
+
+        commentElement.innerHTML = `
+            <p><strong>Calificación:</strong> ${comment.score} / 5</p>
+            <p><strong>Comentario:</strong> ${comment.description}</p>
+            <p><strong>Usuario:</strong> ${comment.user}</p>
+            <p><strong>Fecha:</strong> ${comment.dateTime}</p>
+        `;
+
+        commentsContainer.appendChild(commentElement);
+    });
+}
+
+// Función para manejar el envío de nuevos comentarios desde el formulario
+function handleCommentSubmission() {
+    const selectedProductId = localStorage.getItem('selectedProductId');
+    if (!selectedProductId) {
+        console.error('No se encontró el ID del producto en localStorage');
+        return;
+    }
+
+    const userName = document.getElementById('name').value;
+    const userMessage = document.getElementById('msg').value;
+
+    if (!userName || !userMessage || selectedRating === 0) {
+        alert('Por favor completa todos los campos y selecciona una calificación');
+        return;
+    }
+
+    // Crear un nuevo comentario con la calificación seleccionada
+    const newComment = {
+        product: selectedProductId,
+        score: selectedRating,
+        description: userMessage,
+        user: userName,
+        dateTime: new Date().toLocaleString() // Fecha y hora actuales
+    };
+
+    // Guarda el comentario en localStorage
+    saveLocalComment(selectedProductId, newComment);
+
+    // Limpia los campos del formulario
+    document.getElementById('name').value = '';
+    document.getElementById('msg').value = '';
+    selectedRating = 0; // Reinicia la calificación
+    highlightStars(0); // Reinicia el resalte de estrellas
+
+    // Vuelve a cargar los comentarios incluyendo el nuevo
+    loadProductComments();
+}
+
+// Función para obtener los comentarios almacenados en localStorage para un producto
+function getLocalComments(productId) {
+    const comments = JSON.parse(localStorage.getItem(`comments_${productId}`)) || [];
+    return comments;
+}
+
+// Función para guardar un comentario en localStorage
+function saveLocalComment(productId, comment) {
+    const comments = getLocalComments(productId);
+    comments.push(comment);
+    localStorage.setItem(`comments_${productId}`, JSON.stringify(comments));
+}
+
+// Asigna el evento de click al botón de enviar
+document.querySelector('.btn-enviar').addEventListener('click', handleCommentSubmission);
+
+// Carga los detalles del producto y los comentarios cuando la página está lista
+document.addEventListener('DOMContentLoaded', loadProductInfo(), loadProductComments());
