@@ -635,3 +635,56 @@ body {
   font-family: 'Arial', sans-serif;
   line-height: 1.6;
 }
+
+/*-------------------------------------------------------*/
+
+/* Contenedor para productos relacionados */
+#related-products-container {
+  margin-top: 30px;
+  display: flex; /* Flexbox para organizar productos */
+  flex-wrap: wrap; /* Permite que se ajusten en filas */
+  gap: 20px; /* Espacio entre los productos */
+}
+
+/* Estilo para cada producto relacionado */
+.related-product {
+  cursor: pointer; /* Indica que es clicable */
+  padding: 15px; 
+  width: calc(33.33% - 20px); /* Tres productos por fila */
+  border-radius: 8px; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+  text-align: center;
+  background-color: white; 
+  transition: transform 0.2s ease; /* Transición suave */
+}
+
+/* Efecto hover para el producto */
+.related-product:hover {
+  transform: translateY(-5px); /* Eleva el producto */
+}
+
+/* Estilo de imagen en producto relacionado */
+.related-product img {
+  max-width: 100%; /* Limita tamaño de imagen */
+  height: auto; /* Mantiene proporción */
+  border: 1px solid #ddd; 
+  border-radius: 4px; 
+  margin-bottom: 10px; 
+}
+
+/* Estilo del nombre del producto relacionado */
+.related-product p {
+  font-size: 16px; 
+  color: #333; 
+  font-weight: bold; 
+  margin-top: 10px; 
+}
+
+/* Mensaje si no hay productos relacionados */
+#related-products-container p {
+  text-align: center; 
+  color: #999; 
+  font-style: italic; 
+  width: 100%; 
+}
+
