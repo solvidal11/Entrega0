@@ -34,12 +34,17 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item d-flex align-items-center">
+          <li class="nav-item dropdown d-flex align-items-center">
             <!-- Mensaje de bienvenida -->
             <span class="welcome-message" id="mostrarusuario"></span>
-            <!-- Botón de cierre de sesión con el id 'btnlogout' -->
-            <a class="nav-link" id="btnlogout" href="#">Cerrar sesión</a>
+            <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" id="btnlogout" href="#">Cerrar sesión</a></li>
+            </ul>
           </li>
+         </li>
         </ul>
       </div>
     </div>
