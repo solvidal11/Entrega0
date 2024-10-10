@@ -460,3 +460,232 @@ body {
 .container {
   max-width: 1200px; /* Ancho máximo del contenedor */
 }
+
+
+/*-------------------------------------------------------------------------*/
+
+/* Entrega 4 - Punto 3: Calificacion del producto */
+
+:root {
+    --color-inactivo: #5f5050;
+    --color-hover: #ffa400;
+}
+
+.title-container {
+    display: flex;
+    align-items: center; /* Se alinean verticalmente */
+    margin-bottom: 20px; 
+    margin-left: 110px;
+}
+
+.calificacion-estrellas {
+    display: flex;
+    gap: 5px;
+}
+
+.calificacion-estrellas button {
+    background-color: initial;
+    border: 0;
+    color: var(--color-inactivo);
+    transition: 1s all; /*Transicion de las estrellas para pasar de inactiva a activa*/
+}
+
+.calificacion-estrellas button:hover {
+    cursor: pointer; /*Cambia forma del cursos al posarse sobre las estrellas*/
+    color: var(--color-hover);
+    transform: rotate(180deg); /*Rotacion*/
+}
+
+.title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2em; 
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+}
+
+form {
+    width: 450px;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    margin-left: 110px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  label {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1em;
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-top: 15px;
+
+  }
+  
+  input,
+  textarea {
+    /* Para asegurarse de que todos los campos de texto tienen la misma configuración de letra
+       Por defecto, las áreas de texto tienen un tipo de letra monoespaciada */
+    font: 1em Verdana, Geneva, Tahoma, sans-serif;
+    width: 300px;
+    box-sizing: border-box;
+    border: 1px solid #999;
+  }
+  
+  input:focus,
+  textarea:focus {
+    border-color: #000; /*Se destacan con un borde negro los elementos que se seleccionan con el cursor*/
+  }
+  
+  textarea {
+    vertical-align: top; /* Se alinean los campos de texto con sus etiquetas (Nombre, Mensaje alineado a la cuadricula) */
+    height: 6em; /* Proporcionar espacio para escribir texto */
+  }
+
+  .button-container {
+    font-family: 'Raleway', sans-serif;;
+    font-size: 1em;
+    display: flex;
+    justify-content: right; /* Alinear a la derecha */
+    margin-right: 100px; /* Ajusta para que esté alineado con el borde del textarea */
+}
+
+.btn-enviar {
+    background-color: #e68a21;
+    border: none;
+    color: white;
+    padding: 8px 8px;
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    border-radius: 7px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Efecto de transición */
+    width:90px;
+    height: 40px;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center;
+    margin-bottom: 10px; /* Espacio entre el botón y el borde del formulario */
+}
+
+.btn-enviar:hover {
+    background-color: #835a08; /* Color naranja más oscuro al pasar el mouse */
+}
+
+/* Seccion de comentarios*/
+
+#comments-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#comments-section .comment {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+#comments-section .comment:hover {
+  background-color: #f0f0f0;
+}
+
+#comments-section .comment p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Estilos para el nombre de usuario */
+#comments-section .comment p strong {
+  font-weight: bold;
+  color: #555;
+}
+
+/* Estilos para la calificación */
+#comments-section .comment p .score {
+  font-size: 16px;
+  color: #f39c12; /* Color dorado para la calificación */
+}
+
+/* Estilo de la fecha */
+#comments-section .comment p .date {
+  font-size: 12px;
+  color: #888;
+}
+
+/* Estilos para el título de la sección de comentarios */
+#comments-section h3 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Ajustes generales */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #999;
+  font-style: italic;
+}
+
+/*-------------------------------------------------------*/
+
+/* Contenedor para productos relacionados */
+#related-products-container {
+  margin-top: 30px;
+  display: flex; /* Flexbox para organizar productos */
+  flex-wrap: wrap; /* Permite que se ajusten en filas */
+  gap: 20px; /* Espacio entre los productos */
+}
+
+/* Estilo para cada producto relacionado */
+.related-product {
+  cursor: pointer; /* Indica que es clicable */
+  padding: 15px; 
+  width: calc(33.33% - 20px); /* Tres productos por fila */
+  border-radius: 8px; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+  text-align: center;
+  background-color: white; 
+  transition: transform 0.2s ease; /* Transición suave */
+}
+
+/* Efecto hover para el producto */
+.related-product:hover {
+  transform: translateY(-5px); /* Eleva el producto */
+}
+
+/* Estilo de imagen en producto relacionado */
+.related-product img {
+  max-width: 100%; /* Limita tamaño de imagen */
+  height: auto; /* Mantiene proporción */
+  border: 1px solid #ddd; 
+  border-radius: 4px; 
+  margin-bottom: 10px; 
+}
+
+/* Estilo del nombre del producto relacionado */
+.related-product p {
+  font-size: 16px; 
+  color: #333; 
+  font-weight: bold; 
+  margin-top: 10px; 
+}
+
+/* Mensaje si no hay productos relacionados */
+#related-products-container p {
+  text-align: center; 
+  color: #999; 
+  font-style: italic; 
+  width: 100%; 
+}
