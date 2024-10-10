@@ -216,8 +216,33 @@ function saveLocalComment(productId, comment) {
     localStorage.setItem(`comments_${productId}`, JSON.stringify(comments));
 }
 
+//Funcion para darle funcionalidad a los botones de noche y dia
+const themeLight = document.getElementById('themeLight');
+const themeDark = document.getElementById('themeDark');
+    
+// Función para cambiar el tema
+function setTheme(theme) {
+    document.body.classList.remove('light-theme', 'dark-theme');
+    document.body.classList.add(theme + '-theme');
+    localStorage.setItem('theme', theme);
+}
+
+// Cargar tema guardado
+const savedTheme = localStorage.getItem('theme') || 'light';
+setTheme(savedTheme);
+if (savedTheme === 'dark') {
+    themeDark.checked = true;
+} else {
+    themeLight.checked = true;
+}
+
+// Escuchar cambios en los botones de radio
+themeLight.addEventListener('change', () => setTheme('light'));
+themeDark.addEventListener('change', () => setTheme('dark'));
+
+
 // Asigna el evento de click al botón de enviar
 document.querySelector('.btn-enviar').addEventListener('click', handleCommentSubmission);
 
 // Carga los detalles del producto y los comentarios cuando la página está lista
-document.addEventListener('DOMContentLoaded', loadProductInfo(), loadProductComments());
+document.addEventListener('DOMContentLoaded', loadProductInfo(), loadProductComments(), setTheme());
