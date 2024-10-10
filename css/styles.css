@@ -704,4 +704,24 @@ color: white;
   color: #555;
 }
 
+.dropdown-toggle {
+  background: transparent; 
+  border: none; 
+  padding: 0; 
+  width: auto; 
+  height: auto;
+}
+
+.dropdown-toggle::after {
+  content: ''; /* Asegura que el contenido esté presente */
+  border: solid; /* Crea la flecha */
+  border-width: 0 2px 2px 0;
+  display: inline-block; /* Asegura que se muestre la flecha */
+  padding: 3px; 
+  transform: rotate(45deg); /*Rotacion para hacer la flecha */
+}
+
+.dropdown-toggle:focus {
+  box-shadow: none; 
+}
 
