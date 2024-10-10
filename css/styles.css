@@ -695,8 +695,10 @@ body {
   background-color: #333;
   color: #fff;
 }
-
-.form-check-input:checked, #product-description, #product-sold, #product-category, #comments-section {
+.form-check-input:checked, .title-container .title{
+color: white;
+}
+.form-check-input:checked, #product-description, #product-sold, #product-category, #comments-section{
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   color: #555;
