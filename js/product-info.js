@@ -227,15 +227,6 @@ function setTheme(theme) {
     localStorage.setItem('theme', theme);
 }
 
-// Cargar tema guardado
-const savedTheme = localStorage.getItem('theme') || 'light';
-setTheme(savedTheme);
-if (savedTheme === 'dark') {
-    themeDark.checked = true;
-} else {
-    themeLight.checked = true;
-}
-
 // Escuchar cambios en los botones de radio
 themeLight.addEventListener('change', () => setTheme('light'));
 themeDark.addEventListener('change', () => setTheme('dark'));
@@ -245,4 +236,16 @@ themeDark.addEventListener('change', () => setTheme('dark'));
 document.querySelector('.btn-enviar').addEventListener('click', handleCommentSubmission);
 
 // Carga los detalles del producto y los comentarios cuando la página está lista
-document.addEventListener('DOMContentLoaded', loadProductInfo(), loadProductComments(), setTheme());
+document.addEventListener('DOMContentLoaded', function() {
+    loadProductInfo();
+    loadProductComments();
+    
+    // Cargar tema guardado
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    if (savedTheme === 'dark') {
+        themeDark.checked = true;
+    } else {
+        themeLight.checked = true;
+    }
+});
