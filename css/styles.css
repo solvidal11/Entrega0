@@ -726,3 +726,73 @@ body {
   box-shadow: none; 
 }
 
+/*** MY PROFILE ****************/
+
+
+
+
+/* Contenedor principal del perfil */
+.profile-container {
+  max-width: 600px; 
+  margin: auto; 
+  background: white; 
+  padding: 20px; 
+  border-radius: 8px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* Estilo del título */
+h1 {
+  text-align: center; 
+}
+
+/* Estilo para etiquetas de formulario */
+label {
+  display: block; 
+  margin-top: 10px; 
+}
+
+/* Estilo para los campos de entrada */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="file"] {
+  width: 100%; 
+  padding: 10px; 
+  margin-top: 5px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+}
+
+/* Estilo para el switch de modo día/noche */
+.switch {
+  position: relative; 
+  display: inline-block; 
+  width: 60px; 
+  height: 34px; 
+}
+
+/* Estilo del botón */
+button {
+  width: 100%; 
+  padding: 10px; 
+  background-color: #4CAF50; 
+  color: white; 
+  border: none; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  margin-top: 15px; 
+  font-size: 16px; 
+}
+
+/* Efecto al pasar el ratón sobre el botón */
+button:hover {
+  background-color: #45a049; 
+}
+
+/* Estilo del pie de página */
+footer {
+  padding: 20px 0; 
+  background-color: #f8f9fa; 
+  text-align: center; 
+}

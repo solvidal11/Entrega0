@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const inputEmail = document.getElementById('email'); 
 
     // Comprobar si el usuario está logueado
-    const estaLogueado = localStorage.getItem('isLoggedIn'); // Comprobar el estado de inicio de sesión
+    const estaLogueado = localStorage.getItem('isLoggedIn'); // Cambiar a getItem para obtener el estado de inicio de sesión
 
     if (!estaLogueado) {
         window.location.href = 'login.html'; // Redirigir al login si no está logueado
