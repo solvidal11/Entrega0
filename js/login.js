@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Simulación de autenticación
                 localStorage.setItem('authToken', 'simulated-token');
                 localStorage.setItem('usuario', usuario);
+                localStorage.setItem('contraseña', contraseña);
 
                 alert('Inicio de sesión exitoso.');
                 window.location.href = 'index.html'; // Redirige a la página principal
