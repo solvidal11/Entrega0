@@ -1,16 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const formularioPerfil = document.getElementById('profile-form'); 
-    const inputEmail = document.getElementById('email'); 
-
-    // Comprobar si el usuario está logueado
-    const estaLogueado = localStorage.getItem('isLoggedIn'); // Cambiar a getItem para obtener el estado de inicio de sesión
-
-    if (!estaLogueado) {
-        window.location.href = 'login.html'; // Redirigir al login si no está logueado
-    }
+    const formularioPerfil = document.getElementById('profile-form');
+    const inputEmail = document.getElementById('email');
 
     // Cargar el email del almacenamiento local
-    inputEmail.value = localStorage.getItem('userEmail') || ''; 
+    inputEmail.value = localStorage.getItem('userEmail') || '';
 
     formularioPerfil.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevenir el envío del formulario para validar primero
@@ -40,5 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Almacenar el objeto del perfil de usuario en el almacenamiento local
         localStorage.setItem('userProfile', JSON.stringify(perfilUsuario));
         alert('Cambios guardados exitosamente.'); // Mensaje de éxito
-    });
+
+          });
 });

@@ -726,24 +726,29 @@ body {
   box-shadow: none; 
 }
 
-/*** MY PROFILE ****************/
-
-
-
+/* Estilos Generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+/*-----------------------------------------------------*/
 
 /* Contenedor principal del perfil */
 .profile-container {
   max-width: 600px; 
-  margin: auto; 
-  background: white; 
+  margin: 40px auto; /* Centra el contenedor con margen superior e inferior */
   padding: 20px; 
+  background: white; 
   border-radius: 8px; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
 }
 
 /* Estilo del título */
 h1 {
   text-align: center; 
+  color: #333;
 }
 
 /* Estilo para etiquetas de formulario */
@@ -757,19 +762,12 @@ input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="file"] {
-  width: 100%; 
+  width: calc(100% - 20px); /* Asegura que el campo tenga un pequeño margen */
   padding: 10px; 
   margin-top: 5px; 
   border: 1px solid #ccc; 
   border-radius: 4px; 
-}
-
-/* Estilo para el switch de modo día/noche */
-.switch {
-  position: relative; 
-  display: inline-block; 
-  width: 60px; 
-  height: 34px; 
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 
 /* Estilo del botón */
@@ -790,9 +788,93 @@ button:hover {
   background-color: #45a049; 
 }
 
+/* Estilo para las imágenes */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%; 
+}
+
+/* Estilos para los párrafos */
+p {
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0;
+}
+
+/* Botón de cerrar sesión */
+.logout-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none; 
+}
+
+.logout-button:hover {
+  background-color: #0056b3;
+}
+
 /* Estilo del pie de página */
 footer {
   padding: 20px 0; 
   background-color: #f8f9fa; 
   text-align: center; 
+}
+/* Estilo para el switch de modo día/noche */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-top: 10px; /* Espacio entre el label y el switch */
+}
+
+/* Ocultar el checkbox original */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Estilo del slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px; /* Para esquinas redondeadas */
+}
+
+/* Estilo del slider cuando el checkbox está activado */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%; /* Para hacer que el círculo sea redondeado */
+}
+
+/* Cambiar el color del slider cuando está activado */
+input:checked + .slider {
+  background-color: #2196F3; /* Color cuando está activado */
+}
+
+/* Mover el círculo cuando el checkbox está activado */
+input:checked + .slider:before {
+  transform: translateX(26px); /* Mueve el círculo a la derecha */
 }
