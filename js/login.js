@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const inicioButton = document.getElementById('inicio');
 
     if (usuarioInput && contraseñaInput && inicioButton) {
-        inicioButton.addEventListener('click', () => {
+        inicioButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevenir el envío del formulario
+
             const usuario = usuarioInput.value.trim();
             const contraseña = contraseñaInput.value.trim();
 
@@ -18,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Simulación de autenticación
                 localStorage.setItem('authToken', 'simulated-token');
                 localStorage.setItem('usuario', usuario);
-                localStorage.setItem('contraseña', contraseña);
+                localStorage.setItem('isLoggedIn', 'true'); // Establecer estado de inicio de sesión
 
                 alert('Inicio de sesión exitoso.');
                 window.location.href = 'index.html'; // Redirige a la página principal
@@ -31,6 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('No se encontraron los elementos del formulario.');
     }
 });
-
 
 
