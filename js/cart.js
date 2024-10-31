@@ -46,7 +46,7 @@ function cargarCarrito() {
 // Renderizar productos en el carrito
 function renderizarCarrito() {
     const carritoContainer = document.getElementById('cart-items');
-    carritoContainer.innerHTML = ''; // Limpiar contenedor
+    carritoContainer.innerHTML = ''; 
 
     carrito.forEach(item => {
         const itemElemento = document.createElement('li');
