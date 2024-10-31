@@ -13,7 +13,7 @@ function añadirAlCarrito(producto) {
 
 function actualizarCarrito() {
     const totalCount = carrito.reduce((acc, item) => acc + item.quantity, 0);
-    const totalCost = carrito.reduce((acc, item) => acc + (item.precio * item.quantity), 0); // Calcular costo total
+    const totalCost = carrito.reduce((acc, item) => acc + (item.cost * item.quantity), 0); // Cambiado a item.cost
 
     const carritoBadge = document.getElementById('carrito-badge');
     const costoTotalElemento = document.getElementById('costo-total');
@@ -22,7 +22,8 @@ function actualizarCarrito() {
         carritoBadge.textContent = totalCount;
     }
     if (costoTotalElemento) {
-        costoTotalElemento.textContent = `Costo Total: $${totalCost.toFixed(2)}`; // Actualizar el costo total
+        const currency = carrito.length > 0 ? carrito[0].currency : ''; // Obtener la moneda del primer producto
+        costoTotalElemento.textContent = `Costo Total: ${currency}${totalCost.toFixed(2)}`; // Incluyo la moneda, ya que no la tenía incluída.
     }
 }
 
