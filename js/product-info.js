@@ -249,3 +249,63 @@ document.addEventListener('DOMContentLoaded', function() {
         themeLight.checked = true;
     }
 });
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+  
+    // // Obtener el ID del producto desde la URL
+    const productID = localStorage.getItem('selectedProductId');
+
+    if (productID) {
+        try {
+            // Llama a la API para obtener los datos del producto
+            const response = await fetch(`https://japceibal.github.io/emercado-api/products/${productID}.json`);
+            
+            if (!response.ok) throw new Error("No se pudo obtener la información del producto.");
+            
+            const product = await response.json();
+            localStorage.setItem('costoProducto', product.cost);
+
+            // Mostrar la información del producto en la página
+            document.getElementById('product-name').textContent = product.name;
+            document.getElementById('product-description').textContent = product.description;
+            document.getElementById('product-category').textContent = `Categoría: ${product.category}`;
+            document.getElementById('product-sold').textContent = `Cantidad Vendida: ${product.soldCount}`;
+
+            // Mostrar imágenes del producto
+            const imagesContainer = document.getElementById('product-images-container');
+            product.images.forEach(imgUrl => {
+                const imgElement = document.createElement('img');
+                imgElement.src = imgUrl;
+                imgElement.classList.add('product-image');
+                imagesContainer.appendChild(imgElement);
+            });
+            
+            
+            // Vincular la funcionalidad al botón "Comprar"
+            document.getElementById('buyButton').addEventListener('click', () => {
+                // Guardar la información en localStorage
+                const cartItem = {
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1
+                };
+                
+                localStorage.setItem('cart', JSON.stringify(cartItem));
+                console.log("Producto guardado en el carrito:", cartItem);
+
+
+                // Redirigir a la página del carrito
+                window.location.href = 'cart.html';
+           
+           
+            });
+
+        } catch (error) {
+            console.error("Error al obtener el producto:", error);
+        }
+    } else {
+        console.error('No se encontró el ID del producto en la URL.');
+    }
+});
