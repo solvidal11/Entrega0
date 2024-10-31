@@ -35,6 +35,7 @@ function displayProductInfo(product) {
     document.getElementById('product-description').textContent = `Descripción del Producto: ${product.description}`;
     document.getElementById('category-name').textContent = product.category;
     document.getElementById('sold-quantity').textContent = product.soldCount;
+    document.getElementById('cost-quantity').textContent = `Precio: ${product.cost} ${product.currency}`;
 
     const imagesContainer = document.getElementById('product-images-container');
     imagesContainer.innerHTML = '';  
@@ -271,6 +272,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('product-description').textContent = product.description;
             document.getElementById('product-category').textContent = `Categoría: ${product.category}`;
             document.getElementById('product-sold').textContent = `Cantidad Vendida: ${product.soldCount}`;
+            document.getElementById('cost-quantity').textContent = `Precio: ${product.cost} ${product.currency}`;
 
             // Mostrar imágenes del producto
             const imagesContainer = document.getElementById('product-images-container');
@@ -281,26 +283,35 @@ document.addEventListener('DOMContentLoaded', async () => {
                 imagesContainer.appendChild(imgElement);
             });
             
-            
             // Vincular la funcionalidad al botón "Comprar"
             document.getElementById('buyButton').addEventListener('click', () => {
-                // Guardar la información en localStorage
                 const cartItem = {
                     id: product.id,
                     name: product.name,
-                    price: product.price,
-                    quantity: 1
+                    price: product.cost,
+                    quantity: 1,
+                    image: product.images[0],
+                    currency: product.currency
                 };
+            
+                const carritoGuardado = JSON.parse(localStorage.getItem('cart')) || [];
                 
-                localStorage.setItem('cart', JSON.stringify(cartItem));
+                // Verificar si el producto ya está en el carrito
+                const existingItemIndex = carritoGuardado.findIndex(item => item.id === cartItem.id);
+                
+                if (existingItemIndex !== -1) {
+                    // Si el producto ya está en el carrito, incrementar la cantidad
+                    carritoGuardado[existingItemIndex].quantity += 1;
+                } else {
+                    // Si no, agregar el nuevo producto al carrito
+                    carritoGuardado.push(cartItem);
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(carritoGuardado));
                 console.log("Producto guardado en el carrito:", cartItem);
-
-
-                // Redirigir a la página del carrito
                 window.location.href = 'cart.html';
-           
-           
             });
+            
 
         } catch (error) {
             console.error("Error al obtener el producto:", error);
