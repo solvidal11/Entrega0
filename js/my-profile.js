@@ -1,16 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const formularioPerfil = document.getElementById('profile-form'); 
-    const inputEmail = document.getElementById('email'); 
+    const formularioPerfil = document.getElementById('profile-form');
+    const inputEmail = document.getElementById('email');
 
-    // Comprobar si el usuario está logueado
-    const estaLogueado = localStorage.getItem('isLoggedIn'); // Comprobar el estado de inicio de sesión
-
-    if (estaLogueado) {
-        window.location.href = 'my-profile.html'; // Redirigir al login si no está logueado
-    }else if (!estaLogueado){
-        window.location.href = 'login.html';
-    }
-    
     // Cargar el email del almacenamiento local
     inputEmail.value = localStorage.getItem('userEmail') || '';
 
