@@ -296,16 +296,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             
                 const carritoGuardado = JSON.parse(localStorage.getItem('cart')) || [];
                 
-                // Verificar si el producto ya está en el carrito
-                const existingItemIndex = carritoGuardado.findIndex(item => item.id === cartItem.id);
+                carritoGuardado.push(cartItem);
                 
-                if (existingItemIndex !== -1) {
-                    // Si el producto ya está en el carrito, incrementar la cantidad
-                    carritoGuardado[existingItemIndex].quantity += 1;
-                } else {
-                    // Si no, agregar el nuevo producto al carrito
-                    carritoGuardado.push(cartItem);
-                }
                 
                 localStorage.setItem('cart', JSON.stringify(carritoGuardado));
                 console.log("Producto guardado en el carrito:", cartItem);
