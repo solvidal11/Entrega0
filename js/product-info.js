@@ -293,12 +293,29 @@ document.addEventListener('DOMContentLoaded', async () => {
                     image: product.images[0],
                     currency: product.currency
                 };
-            
-                const carritoGuardado = JSON.parse(localStorage.getItem('cart')) || [];
-                
+
+                let carritoGuardado;
+                const storedCart = localStorage.getItem('cart');
+
+                if (storedCart) {
+                    try {
+                        carritoGuardado = JSON.parse(storedCart);
+                        // Verificar si el valor es un arreglo
+                        if (!Array.isArray(carritoGuardado)) {
+                            console.error("El carrito guardado no es un arreglo. Reinicializando.");
+                            carritoGuardado = []; // Reinicializa como arreglo vacío si no es un arreglo
+                        }
+                    } catch (error) {
+                        console.error("Error al parsear el carrito desde localStorage:", error);
+                        carritoGuardado = []; // Inicializa como arreglo vacío en caso de error
+                    }
+                } else {
+                    carritoGuardado = []; // Si no hay nada en localStorage, inicializa como arreglo vacío
+                }
+
                 // Verificar si el producto ya está en el carrito
                 const existingItemIndex = carritoGuardado.findIndex(item => item.id === cartItem.id);
-                
+
                 if (existingItemIndex !== -1) {
                     // Si el producto ya está en el carrito, incrementar la cantidad
                     carritoGuardado[existingItemIndex].quantity += 1;
@@ -306,7 +323,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     // Si no, agregar el nuevo producto al carrito
                     carritoGuardado.push(cartItem);
                 }
-                
+
                 localStorage.setItem('cart', JSON.stringify(carritoGuardado));
                 console.log("Producto guardado en el carrito:", cartItem);
                 window.location.href = 'cart.html';
