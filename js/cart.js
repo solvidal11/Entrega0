@@ -56,10 +56,48 @@ function renderizarCarrito() {
         miBoton.textContent = 'Eliminar del carrito';
         miBoton.dataset.item = item.id;
         miBoton.addEventListener('click', () => borrarItemCarrito(item.id));
-        
+     
+        //Anadir evento de cambio a la cantidad:
+        const inputCantidad = miNodo.querySelector('.input-cantidad');
+        inputCantidad.addEventListener('input', (event) => {
+            const nuevaCantidad = event.target.value;
+            actualizarSubtotal(item.id, item.price, nuevaCantidad);
+        });
+
         miNodo.appendChild(miBoton);
         DOMcarrito.appendChild(miNodo);
     });
+}
+
+// Actualizar el subtotal en función de la nueva cantidad seleccionada
+function actualizarSubtotal(itemId, price, quantity) {
+    const subtotal = document.querySelector(`#product-subtotal-${itemId}`);
+    const subtotalAct = (price * quantity).toFixed(2);
+
+// Obtener la moneda del carrito usando el item del localStorage para el subtotal
+ const carritoGuardado = JSON.parse(localStorage.getItem('cart')) || [];
+ const item = carritoGuardado.find(i => i.id === itemId);
+
+    subtotal.textContent = `${item.currency} ${subtotalAct}`;
+    
+// Actualizar el total
+renderizarTotal();
+}
+
+// Renderizar el total
+function renderizarTotal() {
+    const carritoGuardado = JSON.parse(localStorage.getItem('cart')) || [];
+    let total = 0;
+
+    carritoGuardado.forEach(item => {
+        const cantidad = document.querySelector(`.input-cantidad[data-id="${item.id}"]`);
+        const cantidadValor = cantidad ? parseInt(cantidad.value, 10) : 0;
+        total += item.price * cantidadValor;
+    });
+
+    //Asegurar que se muestre la moneda correctamente:
+    const moneda = carritoGuardado[0]?.currency || '';
+    DOMtotal.textContent = `${moneda} ${total.toFixed(2)}`;
 }
 
 //Borrar un producto del carrito.
