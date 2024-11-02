@@ -12,13 +12,14 @@ function renderizarCarrito() {
     // Cargar carrito desde localStorage
     const carritoGuardado = JSON.parse(localStorage.getItem('cart')) || [];
     
-    // Si el carrito está vacío, mostrar un mensaje
+    // Si el carrito está vacío, mostrar un mensaje // Modificacion para Parte 4
+    const alert = document.querySelector('.alert');
+
     if (carritoGuardado.length === 0) {
-        const alert = document.querySelector('.alert');
         alert.style.display = 'block';
+        DOMtotal.textContent = 'UYU 0.00';
         return;
     } else {
-        const alert = document.querySelector('.alert');
         alert.style.display = 'none';
     }
     
@@ -53,7 +54,7 @@ function renderizarCarrito() {
         miBoton.dataset.item = item.id;
         miBoton.addEventListener('click', () => borrarItemCarrito(item.id));
      
-        // Añadir evento de cambio a la cantidad:
+        // Añadir evento de cambio a la cantidad // Parte 4
         const inputCantidad = miNodo.querySelector('.input-cantidad');
         inputCantidad.addEventListener('input', (event) => {
             const nuevaCantidad = event.target.value;
@@ -63,14 +64,15 @@ function renderizarCarrito() {
         miNodo.appendChild(miBoton);
         DOMcarrito.appendChild(miNodo);
     });
+    renderizarTotal()
 }
 
-// Actualizar el subtotal en función de la nueva cantidad seleccionada
+// Actualizar el subtotal en función de la nueva cantidad seleccionada // Parte 4
 function actualizarSubtotal(itemId, price, quantity) {
     const subtotal = document.querySelector(`#product-subtotal-${itemId}`);
     const subtotalAct = (price * quantity).toFixed(2);
 
-    // Obtener la moneda del carrito usando el item del localStorage para el subtotal
+    // Obtener la moneda del carrito usando el item del localStorage para el subtotal // Parte 4
     const carritoGuardado = JSON.parse(localStorage.getItem('cart')) || [];
     const item = carritoGuardado.find(i => i.id === itemId);
 
@@ -79,6 +81,9 @@ function actualizarSubtotal(itemId, price, quantity) {
     // Actualizar el total
     renderizarTotal();
 }
+
+//Tasa de conversion USD a UYU // Parte 4
+const conversionMoneda = 40; 
 
 // Renderizar el total
 function renderizarTotal() {
@@ -89,9 +94,21 @@ function renderizarTotal() {
         const cantidad = document.querySelector(`.input-cantidad[data-id="${item.id}"]`);
         const cantidadValor = cantidad ? parseInt(cantidad.value, 10) : 0;
         total += item.price * cantidadValor;
+
+    // Convertir a pesos UYU // Parte 4
+    let precioEnUYU = item.price;
+    if (item.currency === 'USD') {
+    precioEnUYU *= conversionMoneda;
+    }
+
+     total += precioEnUYU * cantidadValor;
+});
+
+    DOMtotal.textContent = `UYU ${total.toFixed(2)}`;
+}
     });
 
-    // Asegurar que se muestre la moneda correctamente:
+    // Asegurar que se muestre la moneda correctamente // Parte 4
     const moneda = carritoGuardado[0]?.currency || '';
     DOMtotal.textContent = `${moneda} ${total.toFixed(2)}`;
 }
