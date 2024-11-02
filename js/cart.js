@@ -93,7 +93,6 @@ function renderizarTotal() {
     carritoGuardado.forEach(item => {
         const cantidad = document.querySelector(`.input-cantidad[data-id="${item.id}"]`);
         const cantidadValor = cantidad ? parseInt(cantidad.value, 10) : 0;
-        total += item.price * cantidadValor;
 
     // Convertir a pesos UYU // Parte 4
     let precioEnUYU = item.price;
@@ -105,12 +104,6 @@ function renderizarTotal() {
 });
 
     DOMtotal.textContent = `UYU ${total.toFixed(2)}`;
-}
-    });
-
-    // Asegurar que se muestre la moneda correctamente // Parte 4
-    const moneda = carritoGuardado[0]?.currency || '';
-    DOMtotal.textContent = `${moneda} ${total.toFixed(2)}`;
 }
 
 // Borrar un producto del carrito.
