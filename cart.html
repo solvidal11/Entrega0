@@ -12,6 +12,9 @@
 </head>
 
 <body>
+
+ 
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -65,9 +68,40 @@
       </div>
       
       <p>Total: $ <span id="total"></span></p>
+
+     <!-- Botón para abrir el modal -->
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Finalizar compra
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Datos de envio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Contenido de ejemplo que ocupa bastante espacio para activar el desplazamiento -->
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit ultrices ante, in fermentum massa facilisis ac. Nulla facilisi. Vestibulum a ligula nec risus varius venenatis. Integer sed dolor erat. Fusce at felis sit amet ligula laoreet fermentum. Donec faucibus orci ut libero cursus, in hendrerit quam efficitur.</p>
+        <p>Curabitur id turpis id nisl scelerisque aliquet ut a metus. Nullam eget sapien ut turpis fermentum vestibulum in a mi. Integer ut turpis eget odio cursus volutpat. Suspendisse potenti. Fusce vehicula consequat nibh, ut fringilla ex suscipit quis. Ut elementum magna id quam fermentum, ac gravida ex tincidunt.</p>
+        <p>Mauris elementum auctor turpis, sit amet fermentum purus varius id. Vivamus in consectetur elit. Duis vehicula posuere risus, eu accumsan orci varius vel. Aenean aliquam felis et sapien pulvinar, id tristique risus auctor.</p>
+        <!-- Repite párrafos para simular más contenido -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
+      </div>
     </div>
-    
-   
+  </div>
+</div>
+
+
+
+</div>
+      <span><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Seguir comprando</button></span>
+    </div> 
   </main>
   <footer class="text-muted">
     <div class="container">

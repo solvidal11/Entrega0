@@ -128,3 +128,4 @@ DOMbotonVaciar.addEventListener('click', vaciarCarrito); // Añadir evento al bo
 
 // Inicio
 renderizarCarrito();
+
