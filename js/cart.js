@@ -118,13 +118,25 @@ function borrarItemCarrito(itemId) {
 
 // Vaciar carrito.
 function vaciarCarrito() {
-    localStorage.setItem('cart', JSON.stringify([])); // Vaciar el carrito en localStorage
-    renderizarCarrito(); // Volver a renderizar el carrito
-    updateCartBadge(); // Actualizar el badge
+    const carritoElementos = document.querySelectorAll('#cart-items'); // Seleccionar todos los elementos del carrito
+
+    // Agregar la animación a cada elemento
+    carritoElementos.forEach((elemento) => {
+        elemento.classList.add('animate__animated', 'animate__backOutDown'); // Añadir clases para la animación
+    });
+
+    // Esperar a que termine la animación antes de vaciar el carrito
+    setTimeout(() => {
+        localStorage.setItem('cart', JSON.stringify([])); // Vaciar el carrito en localStorage
+        renderizarCarrito(); // Volver a renderizar el carrito
+        updateCartBadge(); // Actualizar el badge
+    }, 1000); // El tiempo de espera debe coincidir con la duración de la animación (ajusta según sea necesario)
 }
+
 
 // Eventos
 DOMbotonVaciar.addEventListener('click', vaciarCarrito); // Añadir evento al botón de vaciar el carrito
+ // Añadir evento al botón de vaciar el carrito
 
 // Inicio
 renderizarCarrito();

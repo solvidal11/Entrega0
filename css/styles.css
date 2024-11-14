@@ -893,3 +893,7 @@ input:checked + .slider:before {
   border-color: #007bff;
   background-color: #eaf4ff;
 }
+
+.animate__backOutDown {
+  animation-duration: 3s; /* Ajusta la duración según lo necesites */
+}
