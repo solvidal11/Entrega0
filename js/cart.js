@@ -129,3 +129,75 @@ DOMbotonVaciar.addEventListener('click', vaciarCarrito); // Añadir evento al bo
 // Inicio
 renderizarCarrito();
 
+
+//entrega 7, parte 3, funcionalidad a la seccion de costos
+// Elementos del DOM relacionados con los costos y el envío
+const DOMshippingType = document.querySelector('#shipping-type'); 
+const DOMsubtotal = document.querySelector('#subtotal'); 
+const DOMshippingCost = document.querySelector('#shipping-cost'); 
+const DOMtotalCost = document.querySelector('#total-cost'); 
+const finalizeButton = document.querySelector('#finalize-purchase'); 
+const DOMpaymentMethod = document.querySelector('#payment-method'); 
+const DOMpaymentDetails = document.querySelector('#payment-details'); 
+
+// Mostrar campos específicos según el método de pago seleccionado
+document.getElementById("payment-method").addEventListener("change", function() {
+    const paymentDetails = document.getElementById("payment-details");
+    const creditCardFields = document.getElementById("credit-card-fields");
+    const bankTransferFields = document.getElementById("bank-transfer-fields");
+
+    // Muestra la sección de detalles de pago
+    paymentDetails.style.display = "block";
+
+    // Verifica la opción seleccionada en el método de pago y muestra los campos correspondientes
+    if (this.value === "credit-card") {
+        creditCardFields.style.display = "block"; // Muestra campos de tarjeta de crédito
+        bankTransferFields.style.display = "none"; // Oculta campos de transferencia bancaria
+    } else if (this.value === "bank-transfer") {
+        creditCardFields.style.display = "none"; // Oculta campos de tarjeta de crédito
+        bankTransferFields.style.display = "block"; // Muestra campos de transferencia bancaria
+    } else {
+        // Si no se selecciona ninguna opción, oculta toda la sección de detalles de pago
+        paymentDetails.style.display = "none";
+    }
+});
+
+// Función para calcular el subtotal de los productos en el carrito
+function calculateSubtotal() {
+    const carritoGuardado = JSON.parse(localStorage.getItem('cart')) || []; // Obtiene el carrito del localStorage o inicializa un array vacío
+
+    // Recorre cada producto del carrito y calcula el subtotal basado en su cantidad y precio
+    return carritoGuardado.reduce((sum, item) => {
+        const cantidad = parseInt(document.querySelector(`.input-cantidad[data-id="${item.id}"]`).value, 10); // Obtiene la cantidad ingresada por el usuario
+        let price = item.price * cantidad; // Calcula el precio total para la cantidad dada
+
+        // Si el precio está en dólares, convierte a la moneda local
+        if (item.currency === 'USD') {
+            price *= conversionMoneda; 
+        }
+        return sum + price; 
+    }, 0);
+}
+
+// Función para calcular el total incluyendo el costo de envío
+function calculateTotal() {
+    const subtotal = calculateSubtotal(); // Calcula el subtotal de los productos en el carrito
+    const shippingCost = subtotal * parseFloat(DOMshippingType.value); // Calcula el costo de envío según el tipo seleccionado
+    const total = subtotal + shippingCost; // Calcula el total sumando el subtotal y el costo de envío
+
+    // Actualiza los valores en el HTML para mostrar el subtotal, el costo de envío y el total
+    DOMsubtotal.textContent = subtotal.toFixed(2); 
+    DOMshippingCost.textContent = shippingCost.toFixed(2); 
+    DOMtotalCost.textContent = total.toFixed(2); 
+}
+
+// Cambios en el tipo de envío y recalcula el total cuando cambia
+DOMshippingType.addEventListener('change', calculateTotal);
+
+// Cambios en las cantidades de productos en el carrito y recalcula el total cuando cambian
+document.querySelectorAll('.input-cantidad').forEach(input => {
+    input.addEventListener('input', calculateTotal);
+});
+
+// Llamada inicial a calculateTotal() para calcular los costos en el momento de carga de la página
+calculateTotal();
