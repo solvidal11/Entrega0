@@ -109,22 +109,45 @@ function renderizarTotal() {
 // Borrar un producto del carrito.
 function borrarItemCarrito(itemId) {
     const carritoGuardado = JSON.parse(localStorage.getItem('cart')) || []; // Cargar el carrito desde localStorage
-    // Filtrar el carrito para eliminar el producto con el id especificado
-    const nuevoCarrito = carritoGuardado.filter(item => item.id !== itemId);
-    localStorage.setItem('cart', JSON.stringify(nuevoCarrito)); // Guardar el nuevo carrito en localStorage
-    renderizarCarrito(); // Volver a renderizar el carrito
-    updateCartBadge(); // Actualizar el badge
+    
+    // Seleccionar el producto a eliminar y añadir la animación
+    const productoElement = document.querySelector(`[data-id="${itemId}"]`).closest('li'); // Seleccionamos el <li> que contiene el producto
+
+    // Agregar la animación 'backOutLeft' al producto
+    productoElement.classList.add('animate__animated', 'animate__backOutLeft');
+    
+    // Esperar a que termine la animación antes de eliminar el producto
+    setTimeout(() => {
+        // Filtrar el carrito para eliminar el producto con el id especificado
+        const nuevoCarrito = carritoGuardado.filter(item => item.id !== itemId);
+        localStorage.setItem('cart', JSON.stringify(nuevoCarrito)); // Guardar el nuevo carrito en localStorage
+        renderizarCarrito(); // Volver a renderizar el carrito
+        updateCartBadge(); // Actualizar el badge
+    }, 1000); // El tiempo de espera debe coincidir con la duración de la animación (ajusta según sea necesario)
 }
+
 
 // Vaciar carrito.
 function vaciarCarrito() {
-    localStorage.setItem('cart', JSON.stringify([])); // Vaciar el carrito en localStorage
-    renderizarCarrito(); // Volver a renderizar el carrito
-    updateCartBadge(); // Actualizar el badge
+    const carritoElementos = document.querySelectorAll('#cart-items'); // Seleccionar todos los elementos del carrito
+
+    // Agregar la animación a cada elemento
+    carritoElementos.forEach((elemento) => {
+        elemento.classList.add('animate__animated', 'animate__backOutDown'); // Añadir clases para la animación
+    });
+
+    // Esperar a que termine la animación antes de vaciar el carrito
+    setTimeout(() => {
+        localStorage.setItem('cart', JSON.stringify([])); // Vaciar el carrito en localStorage
+        renderizarCarrito(); // Volver a renderizar el carrito
+        updateCartBadge(); // Actualizar el badge
+    }, 1000); // El tiempo de espera debe coincidir con la duración de la animación (ajusta según sea necesario)
 }
+
 
 // Eventos
 DOMbotonVaciar.addEventListener('click', vaciarCarrito); // Añadir evento al botón de vaciar el carrito
+ // Añadir evento al botón de vaciar el carrito
 
 // Inicio
 renderizarCarrito();
