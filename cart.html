@@ -79,15 +79,53 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Datos de envio</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Información de envío</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
-        <!-- Contenido de ejemplo que ocupa bastante espacio para activar el desplazamiento -->
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit ultrices ante, in fermentum massa facilisis ac. Nulla facilisi. Vestibulum a ligula nec risus varius venenatis. Integer sed dolor erat. Fusce at felis sit amet ligula laoreet fermentum. Donec faucibus orci ut libero cursus, in hendrerit quam efficitur.</p>
-        <p>Curabitur id turpis id nisl scelerisque aliquet ut a metus. Nullam eget sapien ut turpis fermentum vestibulum in a mi. Integer ut turpis eget odio cursus volutpat. Suspendisse potenti. Fusce vehicula consequat nibh, ut fringilla ex suscipit quis. Ut elementum magna id quam fermentum, ac gravida ex tincidunt.</p>
-        <p>Mauris elementum auctor turpis, sit amet fermentum purus varius id. Vivamus in consectetur elit. Duis vehicula posuere risus, eu accumsan orci varius vel. Aenean aliquam felis et sapien pulvinar, id tristique risus auctor.</p>
-        <!-- Repite párrafos para simular más contenido -->
+        <label><input type="radio" name="envio" value="premium" data-costo="15" onclick="calcularTotal()"> Envío Premium (2 a 5 días) + 15%</label><br>
+        <label><input type="radio" name="envio" value="express" data-costo="10" onclick="calcularTotal()"> Envío Express (5 a 8 días) + 7%</label><br>
+        <label><input type="radio" name="envio" value="standard" data-costo="5" onclick="calcularTotal()"> Envío Standard (12 a 15 días) + 5%</label>
+     
+
+        <p class="mt-4">Total de la Compra: $<span id="totalCompra">0</span></p>
+
+       
+       <br> <label> Método de pago</label> <br>
+        <button type="button" class="btn btn-outline-secondary"> Transferencia Bancaria </button>
+        <button type="button" class="btn btn-outline-secondary">Tarjeta de crédito</button>
+
+      
+        <br> <label> Datos de envío</label> <br>
+
+        <form id="datosEnvioForm">
+          <div class="mb-5">
+            <label for="nombre" class="form-label">Nombre y Apellido</label>
+            <input type="text" class="form-control" id="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="departamento" class="form-label">Departamento</label>
+            <input type="text" class="form-control" id="departamento" required>
+          </div>
+          <div class="mb-3">
+            <label for="localidad" class="form-label">Localidad</label>
+            <input type="text" class="form-control" id="localidad" required>
+          </div>
+          <div class="mb-3">
+            <label for="calle" class="form-label">Calle</label>
+            <input type="text" class="form-control" id="calle" required>
+          </div>
+          <div class="mb-3">
+            <label for="numero" class="form-label">Número</label>
+            <input type="num" class="form-control" id="numero" required>
+
+            <label for="esquina" class="form-label">Esquina</label>
+            <input type="text" class="form-control" id="esquina" required>
+          </div>
+        </form>
+
+
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
