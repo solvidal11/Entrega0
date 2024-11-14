@@ -878,3 +878,18 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(26px); /* Mueve el círculo a la derecha */
 }
+
+.envio-opcion {
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.envio-opcion:hover {
+  border-color: #007bff;
+}
+
+.envio-opcion.selected {
+  border-color: #007bff;
+  background-color: #eaf4ff;
+}
