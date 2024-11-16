@@ -35,58 +35,60 @@
         </div>
     </nav>
 
-    <main class="container mt-5">
+    <main class="container mt-1">
         <div class="mb-3">
             Elija un Modo
-            <!-- Modo Día -->
-            <div class="form-check">
-                <input class="form-check-input d-none" type="radio" name="theme" id="themeLight" value="light" checked>
-                <label class="form-check-label" for="themeLight" style="cursor: pointer;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-sun-fill" viewBox="0 0 16 16">
-                        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
-                    </svg>
-                </label>
-            </div>
-            
-           <!-- Modo Noche -->
-            <div class="form-check">
-                <input class="form-check-input d-none" type="radio" name="theme" id="themeDark" value="dark">
-                <label class="form-check-label" for="themeDark" style="cursor: pointer;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-moon-stars" viewBox="0 0 16 16">
-                        <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286"/>
-                        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/>
-                    </svg>
-                </label>
+            <div class="d-flex align-items-center">
+                <!-- Modo Día -->
+                <div class="form-check me-3">
+                    <input class="form-check-input d-none" type="radio" name="theme" id="themeLight" value="light" checked>
+                    <label class="form-check-label" for="themeLight" style="cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-sun-fill" viewBox="0 0 16 16">
+                            <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+                        </svg>
+                    </label>
+                </div>
+                <!-- Modo Noche -->
+                <div class="form-check">
+                    <input class="form-check-input d-none" type="radio" name="theme" id="themeDark" value="dark">
+                    <label class="form-check-label" for="themeDark" style="cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-moon-stars-fill" viewBox="0 0 16 16">
+                            <path d="M12 2a6 6 0 1 0 5.72 7.72A6.01 6.01 0 0 0 12 2zm0 10A4 4 0 1 1 8 8a4 4 0 0 1 4 4zm-5.5-1A2.5 2.5 0 0 0 4 9.5a2.5 2.5 0 0 0 2.5 2.5z"/>
+                        </svg>
+                    </label>
+                </div>
             </div>
         </div>
 
-        <div class="product-info">
+        <div class="product-info mt-2">
             <h1 id="product-name">Nombre del Producto:</h1>
             <p id="product-description">Descripción del Producto:</p>
             <p id="product-category">Categoría: <span id="category-name"></span></p>
             <p id="product-sold">Cantidad Vendida: <span id="sold-quantity"></span></p>
             <p id="product-cost">Precio: <span id="cost-quantity"></span></p>
         </div>
-        <div class="product-images mt-4">
+
+        <div class="product-images mt-3">
             <h2>Imágenes</h2>
             <div id="product-images-container" class="d-flex flex-wrap">
                 <!-- Las imágenes del producto se mostrarán aquí -->
             </div>
         </div>
-        <section id="related-products" class="mt-5">
+
+        <section id="related-products" class="mt-4">
             <h2>Productos Relacionados</h2>
             <div id="related-products-list" class="product-list d-flex flex-wrap">
                 <!-- Aquí se agregarán los productos relacionados -->
             </div>
         </section>
 
-        <br>
-        <br>
+        <br><br>
 
-        <div> <button id="buyButton">Comprar</button> </div>
+        <div>
+            <button id="buyButton">Comprar</button>
+        </div>
 
-        <!-- Sección de calificación de los producto -->
-        <div class="title-container">
+        <div class="title-container mt-2">
             <h1 class="title">Calificación del producto:</h1>
             <div class="calificacion-estrellas">
                 <br>
@@ -124,19 +126,17 @@
 
             <br>
             
-            <div class="button-container">
+            <div class="button-container mt-3">
                 <input type="button" value="Enviar" class="btn-enviar">
             </div>
         </form>
-        </div>
 
         <!-- Sección donde se mostrarán los comentarios del producto -->
         <div id="comments-section">
-        <!-- Los comentarios se insertarán aquí dinámicamente -->
+            <!-- Los comentarios se insertarán aquí dinámicamente -->
         </div>
     </main>
-    
-    
+
     <footer class="text-muted mt-5">
         <div class="container">
             <p class="float-end">
@@ -145,6 +145,7 @@
             <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
         </div>
     </footer>
+
     <div id="spinner-wrapper" class="d-none">
         <div class="lds-ring">
             <div></div>
