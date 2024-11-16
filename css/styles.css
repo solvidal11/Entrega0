@@ -897,3 +897,165 @@ input:checked + .slider:before {
 .animate__backOutDown {
   animation-duration: 3s; /* Ajusta la duración según lo necesites */
 }
+
+/*______________________-___________*/
+
+/* Fondo del Modal con Efecto de Blur */
+.modal-backdrop {
+  backdrop-filter: blur(30px); /*Nivel de desenfoque */
+  background-color: rgba(0, 0, 0, 0.5); /* Mantén el color de fondo oscuro */
+}
+
+/* Evita que el contenido dentro del modal se vea borroso */
+.modal-content {
+  backdrop-filter: none; /* El contenido dentro del modal no tendrá el blur */
+}
+
+
+/* Estilo para los títulos */
+.modal-body .form-label, .modal-body h5, .modal-body .shipping-title, .modal-body label {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 15px;
+  white-space: nowrap;
+}
+
+.modal-header .modal-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+
+/* Estilo para los campos */
+.modal-body input, .modal-body select {
+  margin-bottom: 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.modal-body select {
+  background-color: #f8f9fa;
+}
+
+.modal-body input:focus, .modal-body select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Estructura de los formularios */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.col-md-6 {
+  flex: 0 0 48%;
+}
+
+.col-12 {
+  flex: 0 0 100%;
+}
+
+@media (max-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 100%;
+  }
+
+  .modal-header .modal-title {
+    font-size: 1.5rem;
+  }
+
+  .modal-body .form-label,
+  .modal-body h5,
+  .modal-body .shipping-title {
+    font-size: 1.125rem;
+  }
+}
+
+/* Animación para la entrada del modal */
+@keyframes modalEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal.fade .modal-dialog {
+  animation: modalEntrance 0.5s ease-out;
+}
+
+/* Animación para los botones */
+.modal-footer .btn {
+  transition: all 0.3s ease;
+}
+
+.modal-footer .btn:hover {
+  transform: translateY(-3px); /* Eleva el botón */
+  background-color: #218838; /* Cambio de color */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Animación para el botón de cerrar */
+.modal-header .btn-close {
+  transition: transform 0.3s ease;
+}
+
+.modal-header .btn-close:hover {
+  transform: scale(1.2); /* Aumenta el tamaño del botón */
+}
+
+/* Animación para el cierre del modal */
+@keyframes modalExit {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+.modal.fade-out .modal-dialog {
+  animation: modalExit 0.5s ease-in;
+}
+
+/* Animación para los campos del formulario */
+@keyframes inputEntrance {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.modal-body input, .modal-body select {
+  animation: inputEntrance 0.5s ease-out;
+}
+
+/* Animación de pulsación para el botón de finalizar compra */
+#finalize-purchase {
+  transition: transform 0.3s ease;
+}
+
+#finalize-purchase:active {
+  transform: scale(0.95); /* Hace que el botón se encoja ligeramente al presionarlo */
+}
+
+
+/* acá fui muerta al añadir tantas animaciones a código */
