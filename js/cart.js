@@ -224,3 +224,158 @@ document.querySelectorAll('.input-cantidad').forEach(input => {
 
 // Llamada inicial a calculateTotal() para calcular los costos en el momento de carga de la página
 calculateTotal();
+
+// Entrega 7: Parte 4 
+
+// Función para finalizar la compra
+finalizeButton.addEventListener("click", function () {
+    // Punto 1: Validar campos de la dirección
+    const nombre = document.querySelector("#Nombre").value;
+    const departamento = document.querySelector("#departamento").value;
+    const localidad = document.querySelector("#localidad").value;
+    const calle = document.querySelector("#calle").value;
+    const numero = document.querySelector("#numero").value;
+    const esquina = document.querySelector("#esquina").value;
+
+    if (!nombre || !departamento || !localidad || !calle || !numero || !esquina) {
+        Swal.fire({ // Sweet alerts
+            icon: 'error',
+            title: 'Error',
+            text: 'Debe completar todos los campos de la dirección.',
+        });
+        return;
+    }
+
+    // Punto 2: Validar tipo de envío seleccionado
+    const tipoEnvio = DOMshippingType.value;
+    if (!tipoEnvio) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Por favor, selecciona un tipo de envío.',
+        });
+        return;
+    }
+
+    // Punto 3: Validar cantidad de productos, > 0.
+    const carritoGuardado = JSON.parse(localStorage.getItem('cart')) || [];
+    for (const item of carritoGuardado) {
+        const cantidad = document.querySelector(`.input-cantidad[data-id="${item.id}"]`).value;
+        if (parseInt(cantidad) <= 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: `Debe seleccionar al menos una unidad de este producto: ${item.name}.`,
+            });
+            return;
+        }
+    }
+
+    // Punto 4: Validación de forma de pago 
+    const formaPago = DOMpaymentMethod.value;
+    if (!formaPago) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Por favor, selecciona una forma de pago.',
+        });
+        return;
+    }
+
+    // Punto 5: Validar campos de forma de pago
+    // *** Si se selecciona tarjeta de crédito ***
+    if (formaPago === "credit-card") {
+        const tarjetaNumero = document.querySelector("#credit-card-number").value;
+        const tarjetaFecha = document.querySelector("#credit-card-expiry").value;
+        const tarjetaCVV = document.querySelector("#credit-card-cvv").value;
+        const tarjetaTitular = document.querySelector("#credit-card-holder").value;
+
+
+        if (!tarjetaNumero || !tarjetaFecha || !tarjetaCVV) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Por favor, completa todos los campos de la tarjeta de crédito.',
+            });
+            return;
+        }
+
+        // Validar que numero de tarjeta es numérico
+        if (!/^\d{16}$/.test(tarjetaNumero)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'El número de tarjeta debe tener 16 dígitos.',
+            });
+            return;
+        }
+
+        // Validar formato de fecha de expiración
+        if (!/^\d{2}\/\d{2}$/.test(tarjetaFecha)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'La fecha de expiración debe tener el formato MM/AA.',
+            });
+            return;
+        }
+
+        // Validar el CVV (3 dígitos)
+        if (!/^\d{3}$/.test(tarjetaCVV)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'El CVV debe ser un número de 3 dígitos.',
+            });
+            return;
+        }
+
+        // Extra: Verificar que el campo del nombre del titular no esté vacío y que contenga al menos 2 caracteres
+        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(tarjetaTitular) || tarjetaTitular.length < 2) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'El nombre del titular de la tarjeta debe completarse en un formato válido.',
+            });
+            return;
+        }
+    }
+
+    // *** Si se selecciona transferencia bancaria ***
+    if (formaPago === "bank-transfer") {
+        const cuentaBancaria = document.querySelector("#bank-account-number").value;
+
+        if (!cuentaBancaria) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Por favor, completa todos los campos de la transferencia bancaria.',
+            });
+            return;
+        }
+
+        // Validar formato de la cuenta (cantidad de dígitos variables según país)
+        if (!/^\d{8,12}$/.test(cuentaBancaria)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'El número de cuenta bancaria no tiene el formato válido.',
+            });
+            return;
+        }
+    }
+
+    // Si TODAS las validaciones se cumplen, se muestra el mensaje de éxito
+    Swal.fire({
+        icon: 'success',
+        title: '¡Compra exitosa!',
+        text: 'Tu compra ha sido realizada correctamente. ¡Gracias por tu compra!',
+    }).then(() => {
+        // Vaciar carrito tras compra
+        localStorage.setItem('cart', JSON.stringify([]));
+        // Volver a renderizar el carrito vacío
+        renderizarCarrito();
+    });
+
+});
+
