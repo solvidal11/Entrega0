@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('product-description').textContent = product.description;
             document.getElementById('product-category').textContent = `Categoría: ${product.category}`;
             document.getElementById('product-sold').textContent = `Cantidad Vendida: ${product.soldCount}`;
-            document.getElementById('cost-quantity').textContent = `Precio: ${product.cost} ${product.currency}`;
+            document.getElementById('cost-quantity').textContent = `${product.cost} ${product.currency}`;
 
             // Mostrar imágenes del producto
             const imagesContainer = document.getElementById('product-images-container');
